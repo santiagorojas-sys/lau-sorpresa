@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💝 26 Razones - Por Qué Lau Es La Mejor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+
+
+:root {
+  --rosa-pastel: #FFD6E8;
+  --vino-tinto: #722F37;
+  --azul-oscuro: #134252;
+  --crema: #F5F1EB;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(-45deg, #FFE4E1, #FFF1F5, #F8F4F8, #FFE8ED);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    overflow-x: hidden;
+}
+
+@keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+.music-control {
+    position: absolute;
+    top: 70px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.music-control button {
+    background: var(--rosa-pastel);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.music-control button:hover { transform: scale(1.1); }
+
+.main-nav {
+    position: absolute;
+    top: 20;                    /* Cambiado de 20 a 0 */
+    right: 0;                  /* Cambiado de 20 a 0 */
+    left: auto;                /* AGREGADO */
+    z-index: 1000;
+    background: transparent;    /* AGREGADO */
+    padding: 0;                /* AGREGADO */
+    box-shadow: none; 
+    margin-bottom: 40px;  
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    background: rgba(255,255,255,0.95);
+    padding: 1rem 1.5rem;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--vino-tinto);
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.main-nav a:hover { background: var(--rosa-pastel); transform: translateY(-2px); }
+.hamburger {
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    z-index: 1001;
+    background: var(--rosa-pastel);
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.hamburger:hover {
+    background: var(--vino-tinto);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Mobile Menu Styles */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+    
+    .main-nav {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(255,214,232,0.95));
+        transition: right 0.3s ease;
+        z-index: 1000;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+    }
+    
+    .main-nav.active {
+        right: 0;
+    }
+    
+    .main-nav ul {
+        flex-direction: column;
+        padding: 80px 20px 20px;
+        background: transparent;
+        height: 100%;
+        box-shadow: none;
+        border-radius: 0;
+        gap: 1rem;
+    }
+    
+    .main-nav li {
+        width: 100%;
+    }
+    
+    .main-nav a {
+        display: block;
+        padding: 15px 20px;
+        width: 100%;
+        text-align: center;
+        font-size: 1.1rem;
+        background: rgba(255,255,255,0.9);
+        margin-bottom: 10px;
+        border-radius: 15px;
+    }
+    
+    .main-nav a:hover {
+        background: var(--rosa-pastel);
+        transform: translateX(-5px);
+    }
+    
+    .bonus-link {
+        animation: pulse 2s infinite;
+    }
+}
+
+
+main { position: relative; z-index: 10; }
+
+.hero-razones {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--rosa-pastel), #FFE4E1, #FFF1F5);
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.hero-razones::after {
+    content: '💝';
+    position: absolute;
+    font-size: 15rem;
+    opacity: 0.08;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.hero-content-razones {
+    max-width: 800px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title-razones {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    color: var(--vino-tinto);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.hero-subtitle-razones {
+    font-size: 1.5rem;
+    color: var(--azul-oscuro);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.intro-text {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2.5rem;
+    border-radius: 25px;
+    border-left: 5px solid var(--vino-tinto);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.intro-text p {
+    font-size: 1.2rem;
+    color: var(--azul-oscuro);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.razones-section {
+    padding: 5rem 2rem;
+    background: white;
+}
+
+.razones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.razon-card {
+    background: linear-gradient(135deg, white, #F8F5F2);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    border-left: 5px solid var(--rosa-pastel);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 200px;
+}
+
+.razon-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,182,193,0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.razon-card:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 25px 60px rgba(255,182,193,0.4);
+    border-left-color: var(--vino-tinto);
+}
+
+.razon-card:hover::before { opacity: 1; }
+
+.razon-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--vino-tinto);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.razon-card p {
+    font-size: 1.15rem;
+    color: var(--azul-oscuro);
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+    font-weight: 500;
+}
+
+.closing-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, rgba(255,182,193,0.1), rgba(255,214,235,0.15));
+    text-align: center;
+}
+
+.closing-box {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 3.5rem;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    border: 3px solid var(--rosa-pastel);
+}
+
+.closing-icon {
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+.closing-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: var(--vino-tinto);
+    margin-bottom: 1.5rem;
+}
+
+.closing-box p {
+    font-size: 1.25rem;
+    color: var(--azul-oscuro);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.closing-names {
+    font-size: 1.3rem;
+    color: var(--vino-tinto);
+    font-weight: 600;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--rosa-pastel);
+}
+
+footer {
+    padding: 3rem 2rem;
+    background: var(--vino-tinto);
+    color: white;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+footer p { margin: 0.5rem 0; }
+
+@media (max-width: 768px) {
+    .hero-title-razones { font-size: 3rem; }
+    .razones-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .main-nav ul { flex-wrap: wrap; gap: 0.5rem; }
+}
+.bonus-link {
+    background: linear-gradient(135deg, var(--rosa-pastel), #FFB6C1) !important;
+    color: var(--vino-tinto) !important;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+.hero-razones {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--rosa-pastel), #FFE4E1, #FFF1F5);
+    padding: 4rem 2rem;     /* ← CAMBIA de 2rem a 4rem */
+    text-align: center;
+    position: relative;
+    margin-top: 80px;       /* ← AGREGAR ESTA LÍNEA */
+}
+
+    </style>
+</head>
+<body class="page-no-nav">
+    <audio id="razonesMusic" loop>
+        <source src="audio/razones-musica.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="music-control">
+        <button onclick="toggleRazonesMusic()" id="razonesMusicBtn">🎵</button>
+    </div>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">🏠 Inicio</a></li>
+            <li><a href="spider-hunters.html">🕷️ Cazadores</a></li>
+            <li><a href="jardin.html">🌸 Jardín</a></li>
+            <li><a href="suenos.html">🗺️ Sueños</a></li>
+            <li><a href="razones.html">💝 Razones</a></li>
+<li><a href="bonus.html" class="bonus-link">🎮 BONUS</a></li>
+
+        </ul>
+    </nav>
+<button class="hamburger" onclick="toggleMenu()">☰</button>
+    <main>
+        <section class="hero-razones">
+            <div class="hero-content-razones">
+                <h1 class="hero-title-razones">💝 26 Razones 💝</h1>
+                <p class="hero-subtitle-razones">Por qué Lau es la mejor mujer del mundo mundial</p>
+                <div class="intro-text">
+                    <p>"No hay 26 razones... hay infinitas. Pero empecemos con estas, que apenas rasguñan la superficie de tu increíble esencia."</p>
+                    <p style="font-style: italic; color: var(--vino-tinto); font-weight: 600;">Te amamos, Lau ❤️</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reemplaza toda la <section class="razones-section"> por esto: -->
+<section class="razones-section">
+    <!-- Título y Ruleta -->
+    <div style="text-align: center; margin-bottom: 4rem;">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--vino-tinto); margin-bottom: 1rem;">💝 26 RAZONES 💝</h2>
+        <p style="font-size: 1.3rem; color: var(--azul-oscuro);">Gira la ruleta para desbloquear razones especiales ✨</p>
+    </div>
+    
+    <!-- RULETA CENTRAL -->
+    <div style="max-width: 500px; margin: 0 auto 4rem; text-align: center;">
+        <div class="wheel-container" style="
+            width: 350px; height: 350px; margin: 2rem auto; position: relative;
+            border-radius: 50%; overflow: hidden; border: 8px solid var(--vino-tinto);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        ">
+            <div class="wheel-pointer" style="
+                position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+                width: 0; height: 0; border-left: 20px solid transparent;
+                border-right: 20px solid transparent; border-top: 40px solid var(--vino-tinto);
+                z-index: 10;
+            "></div>
+            <canvas class="wheel" id="wheelCanvas" width="350" height="350" style="
+                width: 100%; height: 100%; border-radius: 50%;
+                transition: transform 4s cubic-bezier(0.23, 1, 0.32, 1);
+            "></canvas>
+        </div>
+        <button class="spin-btn" id="spinBtn" onclick="spinWheel()" style="
+            background: linear-gradient(135deg, var(--vino-tinto), #8B4513); color: white;
+            border: none; padding: 1.2rem 3rem; border-radius: 30px; font-size: 1.4rem;
+            font-weight: 600; cursor: pointer; margin-top: 1.5rem; transition: all 0.3s;
+            box-shadow: 0 15px 40px rgba(114,47,55,0.4);
+        ">🎰 ¡GIRAR Y DESBLOQUEAR! 🎰</button>
+        <p id="wheelResult" style="margin-top: 1.5rem; font-size: 1.6rem; font-weight: 700; color: var(--vino-tinto); min-height: 2.5rem;"></p>
+    </div>
+
+    <!-- GRID DE RAZONES (bloqueadas al inicio) -->
+    <div class="razones-grid" id="razonesGrid" style="opacity: 0.5; pointer-events: none;">
+        <!-- Las tarjetas se generan con JS -->
+    </div>
+</div>
+
+
+
+        <footer>
+            <p>💝 Las 26 Razones de Lau 💝</p>
+            <p>La mejor mujer del mundo mundial</p>
+            <p>Te amamos infinito 💕</p>
+        </footer>
+    </main>
+
+    <script>
+const razones = [
+    "Por tu inteligencia que te hace ver el mundo diferente",
+    "Porque tienes la valentía de perseguir tus sueños sin importar qué piensen",
+    "Por tu capacidad de levantarte después de cada caída",
+    "Porque eres una amiga leal que nunca abandona a quien ama",
+    "Por tu independencia y ganas de crecer como persona",
+    "Porque trabajas duro en la escuela a pesar de los profesores difíciles",
+    "Por tu determinación en aprender inglés y viajar el mundo",
+    "Porque cuidas con pasión a los animales y la naturaleza",
+    "Por tu sentido del humor que nos hace reír sin parar",
+    "Porque tienes emprendimiento y quieres montar tu propio negocio",
+    "Por tu capacidad de amar profundamente sin esperar nada a cambio",
+    "Porque eres auténtica en un mundo de gente falsa",
+    "Por tu empatía y la forma en que comprendes a otros",
+    "Porque nunca te dejas vencer por las dificultades",
+    "Por tu creatividad y forma única de ver la vida",
+    "Porque eres inspiradora sin darte ni cuenta",
+    "Por tu fortaleza emocional que admiran todos",
+    "Porque tienes fe en ti misma cuando otros dudan",
+    "Por tu generosidad sin límites con ADQA",
+    "Porque mereces ser tratada como la reina que eres",
+    "Por tu sensibilidad que te hace ser diferente",
+    "Porque eres una mujer que lucha por lo que quiere",
+    "Por tu conexión con la naturaleza y las flores",
+    "Porque tienes sueños que van a cambiar el mundo",
+    "Por tu luz que nos ilumina cuando todo está oscuro",
+    "Porque simplemente ERES INCREÍBLE, Lau. Punto."
+];
+
+let wheelSpinning = false;
+let unlockedRazones = new Set();
+
+function loadRazones() {
+    const grid = document.getElementById('razonesGrid');
+    grid.innerHTML = '';
+    
+    razones.forEach((razon, index) => {
+        const card = document.createElement('div');
+        card.className = 'razon-card';
+        card.style.animationDelay = `${index * 0.05}s`;
+        const isUnlocked = unlockedRazones.has(index);
+        
+        card.innerHTML = `
+            <div class="razon-number">#${index + 1}</div>
+            <p>${isUnlocked ? `"${razon}"` : '🔒 Gira la ruleta para desbloquear'}</p>
+            ${isUnlocked ? '<div style="font-size: 1.2rem; color: #4CAF50; margin-top: 0.5rem;">✅ DESBLOQUEADA</div>' : ''}
+        `;
+        
+        if(isUnlocked) {
+            card.style.borderLeftColor = 'var(--rosa-pastel)';
+            card.style.background = 'linear-gradient(135deg, #E8F5E9, #F1F8E9)';
+        } else {
+            card.style.opacity = '0.6';
+            card.style.pointerEvents = 'none';
+        }
+        
+        grid.appendChild(card);
+    });
+    
+    if(unlockedRazones.size > 0) {
+        grid.style.opacity = '1';
+        grid.style.pointerEvents = 'auto';
+    }
+}
+
+function spinWheel() {
+    if(wheelSpinning) return;
+    wheelSpinning = true;
+    const btn = document.getElementById('spinBtn');
+    btn.disabled = true;
+    btn.textContent = 'Girando... ⏳';
+    document.getElementById('wheelResult').textContent = '';
+    
+    const canvas = document.getElementById('wheelCanvas');
+    const ctx = canvas.getContext('2d');
+    const numSegments = 8;
+    const spins = 5 + Math.random() * 3;
+    const finalAngle = (Math.random() * 360) * Math.PI / 180;
+    const totalAngle = (spins * 360 + finalAngle) * Math.PI / 180;
+    
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const radius = 155;
+    
+    for(let i = 0; i < numSegments; i++) {
+        const angle = (Math.PI * 2 / numSegments) * i;
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.rotate(angle);
+        ctx.beginPath();
+        ctx.arc(0, 0, radius, 0, Math.PI * 2 / numSegments);
+        ctx.lineTo(0, 0);
+        ctx.closePath();
+        
+        const hue = (i * 360 / numSegments + 300) % 360;
+        const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, radius);
+        gradient.addColorStop(0, `hsl(${hue}, 70%, 70%)`);
+        gradient.addColorStop(1, `hsl(${hue}, 70%, 50%)`);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        
+        ctx.shadowColor = 'rgba(0,0,0,0.5)';
+        ctx.shadowBlur = 15;
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 14px Poppins';
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(`#${(i * 3 + 1)}`, radius - 25, 8);
+        ctx.restore();
+    }
+    
+    canvas.style.transform = `rotate(${-totalAngle}rad)`;
+    
+    setTimeout(() => {
+        const winnerIndex = Math.floor((finalAngle * 180 / Math.PI) / (360 / numSegments)) % numSegments;
+        const razonNumber = Math.floor(Math.random() * 26) + 1;
+        
+        unlockedRazones.add(razonNumber - 1);
+        loadRazones();
+        
+        document.getElementById('wheelResult').innerHTML = 
+            `🎉 ¡RAZÓN #${razonNumber} DESBLOQUEADA! 🎉<br>
+             <span style="font-size: 1.2rem;">"${razones[razonNumber - 1]}"</span>`;
+        
+        wheelSpinning = false;
+        btn.disabled = false;
+        btn.textContent = '🎰 ¡GIRAR NUEVAMENTE! 🎰';
+        createHearts();
+        createConfetti();
+    }, 4000);
+}
+
+function createHearts() {
+    for(let i = 0; i < 20; i++) {
+        setTimeout(() => {
+            const heart = document.createElement('div');
+            heart.textContent = '💖';
+            heart.style.cssText = `
+                position: fixed; left: 50%; top: 50%; font-size: 2rem;
+                pointer-events: none; z-index: 2000;
+                animation: heartFloat 3s ease-out forwards;
+            `;
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 3000);
+        }, i * 100);
+    }
+}
+
+function createConfetti() {
+    for(let i = 0; i < 50; i++) {
+        setTimeout(() => {
+            const confetti = document.createElement('div');
+            confetti.textContent = '✨';
+            confetti.style.cssText = `
+                position: fixed; left: ${Math.random()*100}vw; top: -20px;
+                font-size: 1.5rem; animation: fall 4s linear forwards;
+                pointer-events: none; z-index: 2000;
+            `;
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 4000);
+        }, i * 30);
+    }
+}
+
+function toggleRazonesMusic() {
+    const audio = document.getElementById('razonesMusic');
+    const btn = document.getElementById('razonesMusicBtn');
+    if(audio.paused) {
+        audio.play();
+        btn.textContent = '🔇';
+    } else {
+        audio.pause();
+        btn.textContent = '🎵';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadRazones();
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fall { to { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
+        @keyframes heartFloat { to { transform: translate(200px, -300px) rotate(360deg); opacity: 0; } }
+    `;
+    document.head.appendChild(style);
+});
+function toggleMenu() {
+    const nav = document.querySelector('.main-nav');
+    const hamburger = document.querySelector('.hamburger');
+    
+    nav.classList.toggle('active');
+    
+    if(nav.classList.contains('active')) {
+        hamburger.innerHTML = '✕';
+    } else {
+        hamburger.innerHTML = '☰';
+    }
+}
+
+// Close menu when clicking outside
+document.addEventListener('click', function(event) {
+    const nav = document.querySelector('.main-nav');
+    const hamburger = document.querySelector('.hamburger');
+    
+    if (!nav.contains(event.target) && !hamburger.contains(event.target)) {
+        nav.classList.remove('active');
+        hamburger.innerHTML = '☰';
+    }
+});
+
+// Close menu when clicking a link
+document.querySelectorAll('.main-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+        const nav = document.querySelector('.main-nav');
+        const hamburger = document.querySelector('.hamburger');
+        nav.classList.remove('active');
+        hamburger.innerHTML = '☰';
+    });
+});
+</script>

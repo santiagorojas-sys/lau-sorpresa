@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 ADQA Family - Laura Lizeth</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+/* ADQA STYLES - IGUAL A INDEX + INTERACTIVO */
+:root {
+  --rosa-pastel: #FFD6E8;
+  --vino-tinto: #722F37;
+  --azul-oscuro: #134252;
+  --crema: #F5F1EB;
+}
+
+body { background: var(--crema); }
+
+.petals-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+
+.music-control { position: fixed; top: 20px; left: 20px; z-index: 1000; }
+
+.music-control button { background: var(--rosa-pastel); border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; }
+
+.music-control button:hover { transform: scale(1.1); }
+
+.main-nav { 
+    position: relative; 
+    z-index: 1000; 
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+    background: transparent;
+}
+
+.main-nav ul { list-style: none; display: flex; gap: 1rem; background: rgba(255,255,255,0.95); padding: 1rem 1.5rem; border-radius: 25px; backdrop-filter: blur(10px); box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+
+.main-nav a { text-decoration: none; color: var(--vino-tinto); font-weight: 600; padding: 8px 15px; border-radius: 15px; transition: all 0.3s ease; }
+
+.main-nav a:hover { background: var(--rosa-pastel); transform: translateY(-2px); }
+
+main { position: relative; z-index: 10; }
+
+.hero { 
+    min-height: 70vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    background: linear-gradient(135deg, var(--rosa-pastel), #FFE4E1, #FFF1F5); 
+    padding: 2rem; 
+    margin-top: -80px; /* Ajusta este valor si necesitas más o menos espacio */
+}
+
+.hero-content { text-align: center; max-width: 900px; }
+
+.hero-title { font-family: 'Playfair Display', serif; font-size: 4.5rem; color: var(--vino-tinto); margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); animation: float 3s ease-in-out infinite; }
+
+@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+
+.hero-text { font-size: 1.4rem; color: var(--azul-oscuro); margin-bottom: 2rem; }
+
+.hero-quote { background: rgba(255, 255, 255, 0.9); padding: 2.5rem; border-radius: 25px; border-left: 5px solid var(--vino-tinto); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+.hero-quote p { font-size: 1.2rem; color: var(--azul-oscuro); margin-bottom: 1rem; line-height: 1.6; }
+
+.hero-quote span { display: block; font-size: 0.95rem; color: var(--rosa-pastel); font-weight: 600; margin-top: 1rem; }
+
+.family-section { padding: 5rem 2rem; background: white; }
+
+.section-title { text-align: center; margin-bottom: 4rem; }
+
+.section-title h2 { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--vino-tinto); margin-bottom: 0.5rem; }
+
+.section-subtitle { font-size: 1.2rem; color: var(--azul-oscuro); }
+
+.members-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2.5rem; max-width: 1400px; margin: 0 auto; }
+
+.member-card-adqa { background: linear-gradient(135deg, white, #F8F5F2); border-radius: 25px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid transparent; position: relative; overflow: hidden; }
+
+.member-card-adqa::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,182,193,0.3), transparent); opacity: 0; transition: opacity 0.5s; }
+
+.member-card-adqa:hover { transform: translateY(-15px) scale(1.05); box-shadow: 0 25px 60px rgba(255,182,193,0.4); border-color: var(--rosa-pastel); }
+
+.member-card-adqa:hover::before { opacity: 1; }
+
+.member-image { width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 1.5rem; background-size: cover; background-position: center; border: 4px solid var(--rosa-pastel); box-shadow: 0 8px 25px rgba(255,182,193,0.3); transition: all 0.4s ease; }
+
+.member-card-adqa:hover .member-image { transform: scale(1.12) rotate(-5deg); box-shadow: 0 12px 35px rgba(255,182,193,0.5); }
+
+.member-card-adqa h3 { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: var(--vino-tinto); margin-bottom: 0.5rem; }
+
+.member-card-adqa p { font-size: 1rem; color: var(--azul-oscuro); margin: 0; font-weight: 500; }
+
+.member-card-adqa.me { background: linear-gradient(135deg, rgba(107,155,209,0.1), rgba(255,182,193,0.2)); border-color: #6B9BD1; }
+
+.member-card-adqa.me h3 { color: #6B9BD1; }
+
+.message-overlay { 
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0,0,0,0.8); 
+    display: none; 
+    align-items: center; 
+    justify-content: center; 
+    z-index: 3000;
+}
+
+.message-overlay.active { display: flex; }
+
+/* PC: TARJETA PEQUEÑA */
+.message-box { 
+    background: white; 
+    border-radius: 30px; 
+    padding: 3rem; 
+    max-width: 500px; /* ← PEQUEÑO PC */
+    width: 90%; 
+    max-height: 70vh; 
+    overflow-y: auto; 
+    text-align: center; 
+    box-shadow: 0 30px 80px rgba(0,0,0,0.3); 
+    animation: popUp 0.4s ease;
+}
+
+/* MÓVIL: TARJETA GRANDE */
+@media (max-width: 768px) {
+    .message-box { 
+        max-width: 95% !important; 
+        max-height: 85vh !important; 
+        padding: 2rem !important; 
+        margin: 10px !important;
+        border-radius: 25px !important;
+    }
+}
+
+/* BOTÓN SIEMPRE VISIBLE */
+.message-box button { 
+    position: sticky; 
+    bottom: 10px; 
+    display: block !important; 
+    margin: 20px auto 10px; 
+    padding: 12px 30px; 
+    background: linear-gradient(135deg, var(--rosa-pastel), #FFB6C1); 
+    border: none; 
+    border-radius: 25px; 
+    font-size: 1rem; 
+    font-weight: 600; 
+    cursor: pointer; 
+    color: var(--vino-tinto); 
+    z-index: 10;
+    box-shadow: 0 5px 20px rgba(255,182,193,0.4);
+}
+
+.message-box button:hover { transform: scale(1.05); }
+
+.confetti { position: fixed; pointer-events: none; z-index: 1500; font-size: 1.5em; animation: fall 3s linear forwards; }
+
+@keyframes fall { to { transform: translateY(100vh) rotate(360deg); opacity: 0; } }
+
+@media (max-width: 768px) { 
+    .hero-title { font-size: 3rem; }
+    
+    /* CUADROS ADQA MÓVIL PERFECTOS */
+    .members-grid { 
+        grid-template-columns: 1fr !important; /* ← 1 POR FILA */
+        gap: 2rem !important;                  /* ← MÁS ESPACIO */
+        padding: 0 1rem;                       /* ← MARGENES */
+    }
+    
+    .member-card-adqa { 
+        min-height: 300px;                     /* ← ALTURA FIJA */
+        padding: 2.5rem 1.5rem !important;     /* ← MÁS ESPACIO INTERNO */
+    }
+    
+    .section-title h2 { font-size: 2.5rem; }
+    .main-nav ul { flex-wrap: wrap; gap: 0.5rem; }
+    
+    /* VIDEO MÁS PEQUEÑO */
+    video { max-height: 300px !important; }
+}
+
+.video-section { padding: 5rem 2rem; background: linear-gradient(135deg, #FFF8F3, #F5F5F5); }
+
+.video-container { max-width: 300px; margin: 0 auto; text-align: center; }
+
+.video-container h2 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--vino-tinto); margin-bottom: 2.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
+
+video { transition: all 0.3s ease; }
+
+video:hover { box-shadow: 0 30px 80px rgba(255,182,193,0.4) !important; }
+
+@media (max-width: 768px) { 
+  .video-container h2 { font-size: 2rem; }
+  video { max-width: 95% !important;  max-width: 100%;     /* ← AGREGAR */
+    height: auto;        /* ← AGREGAR */
+    max-height: 450px; }
+}
+/* Estilos para botón BONUS */
+.bonus-link {
+    background: linear-gradient(135deg, var(--rosa-pastel), #FFB6C1) !important;
+    color: var(--vino-tinto) !important;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+/* HAMBURGUESA Y MENÚ MÓVIL */
+.hamburger {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+    background: var(--rosa-pastel);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.hamburger:hover {
+    transform: scale(1.1);
+    background: var(--vino-tinto);
+    color: white;
+}
+
+/* Estilos responsive para móvil */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+    
+    .main-nav {
+        position: fixed !important; /* Forzar fixed en móvil */
+        right: -100%;
+        transition: right 0.3s ease;
+        top: 0;
+        height: 100vh;
+        width: 250px;
+        background: white;
+        padding: 0; /* Reset padding */
+    }
+    
+    .main-nav.active {
+        right: 0;
+    }
+    
+    .main-nav ul {
+        flex-direction: column;
+        height: 100%;
+        padding: 80px 20px 20px;
+        border-radius: 0;
+        gap: 1.5rem;
+    }
+    
+    .main-nav a {
+        display: block;
+        padding: 15px;
+        font-size: 1.1rem;
+    }
+    
+    .hero {
+        margin-top: 0; /* Quitar margen en móvil */
+    }
+}
+/* MÓVIL - TARJETAS MÁS GRANDES */
+@media (max-width: 480px) {
+    .members-grid {
+        gap: 2.5rem !important;
+    }
+    
+    .member-card-adqa {
+        padding: 3rem 2rem !important;
+        margin-bottom: 1rem;
+    }
+    
+    .member-image {
+        width: 120px !important;
+        height: 120px !important;
+    }
+}
+/* MENSAJE MÓVIL PERFECTO */
+@media (max-width: 768px) {
+    .message-box { 
+        max-width: 95% !important; 
+        max-height: 85vh !important; 
+        padding: 1.5rem !important; 
+        margin: 20px !important;
+    }
+    
+    .message-box h3 { 
+        font-size: 1.5rem !important; 
+    }
+    
+    .message-box p { 
+        font-size: 1.1rem !important; 
+        line-height: 1.6 !important; 
+    }
+    
+    .message-box button { 
+        padding: 12px 30px !important; 
+        font-size: 1rem !important; 
+    }
+}
+
+    </style>
+</head>
+<body class="page-no-nav">
+    <audio id="adqaMusic" loop>
+        <source src="audio/morat-adqa.mp3" type="audio/mpeg">
+    </audio>
+    
+    <div class="petals-container" id="petalsContainer"></div>
+
+    <div class="music-control">
+        <button onclick="toggleAdqaMusic()" id="adqaMusicBtn">🎵</button>
+    </div>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">🏠 Inicio</a></li>
+            <li><a href="spider-hunters.html">🕷️ Cazadores</a></li>
+            <li><a href="jardin.html">🌸 Jardín</a></li>
+            <li><a href="suenos.html">🗺️ Sueños</a></li>
+            <li><a href="razones.html">💝 Razones</a></li>
+<li><a href="bonus.html" class="bonus-link">🎮 BONUS</a></li>
+
+        </ul>
+    </nav>
+<button class="hamburger" onclick="toggleMenu()">☰</button>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">💕 ADQA FAMILY 💕</h1>
+                <p class="hero-text">La familia que elegiste con el corazón</p>
+                <div class="hero-quote">
+                    <p>"Nicol, Luna, Cano, Diana, Oscar, Valentina, Juliana y yo... El concierto de Morat que nos hizo una familia disfuncional para siempre"</p>
+                    <span>17/07/24 - ADQA Forever ✨</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="family-section">
+            <div class="section-title">
+                <h2>👨‍👩‍👧‍👦 Nuestros ADQA</h2>
+                <p class="section-subtitle">Haz clic en cada uno para leer sus mensajes especiales ✨</p>
+            </div>
+            <div class="members-grid" id="membersGrid"></div>
+                </section>
+
+        <section class="video-section">
+            <div class="video-container">
+                <h2>La banda que nos unio💖</h2>
+                <video width="100%" controls style="border-radius: 25px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); max-width: 900px; margin: 0 auto; display: block;">
+                    <source src="videos/adqa-video.mp4" type="video/mp4">
+                    Tu navegador no soporta el video
+                </video>
+            </div>
+        </section>
+    </main>
+
+
+    <div class="message-overlay" id="messageOverlay">
+        <div class="message-box">
+            <div class="member-image" id="msgImage"></div>
+            <h3 id="msgName"></h3>
+            <p id="msgText"></p>
+            <button onclick="closeMessage()">Entendido 💖</button>
+        </div>
+    </div>
+
+    <script>
+const members = [
+    { 
+        name: 'Nicol', 
+        photo: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=350', 
+        emoji: '🎤', 
+      
+message: 'Querida Lau, feliz cumpleaños. Hoy celebro que existas, que estés en mi vida y que hayas llegado tan lejos siendo tan auténtica y fuerte. Gracias por todas las charlas, los abrazos y los consejos que siempre me salvan. Te deseo un año lleno de paz, amor y cosas lindas que te hagan muy feliz. Te quiero con el alma. 🥰✨',
+        audio: 'audio/nicol.mp3'
+    },
+    { 
+        name: 'Luna', 
+        photo: 'https://images.unsplash.com/photo-1519761918817-1795554a9226?w=350', 
+        emoji: '🌙', 
+        message: 'Feliz cumpleaños Lau, que tengas un buen cumpleaños, cuidate mucho y aprovecha y alocate un poquito, un placer haberte conocido, un abrazo bien grande💕',
+        audio: null
+    },
+    { 
+        name: 'Cano', 
+        photo: 'https://images.unsplash.com/photo-1501854140801-50d01608902b?w=350', 
+        emoji: '⚡', 
+        message: '¡¡¡FELIZ CUMPLEAÑOS LAU!!! 🎊🎁 Tu energía, tu risa, tu amor... hoy celebramos TODO lo hermoso que eres. Que este año sea tan épico como vos, lleno de aventuras, risas y momentos inolvidables. ¡Te queremos un montón! 🔥💕',
+        audio: 'audio/cano.mp3'
+    },
+    { 
+        name: 'Diana', 
+        photo: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=350', 
+        emoji: '💪', 
+        message: '¡Feliz cumpleaños, Lau! 🎉 Otra vuelta al sol y seguís siendo la persona más divertida, genuina y increíble que conozco. Que hoy te mimen como te merecés, que haya torta en abundancia y que la noche sea inolvidable. Te quiero mucho, hermosa. A por más conciertos juntas y muchos años más brindando por vos. 🥂',
+        audio: null
+    },
+    { 
+        name: 'Oscar', 
+        photo: 'https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=350', 
+        emoji: '🛡️', 
+        message: '¡Feliz cumpleaños, Lau hermosa! Que este nuevo año te traiga todo lo que mereces: risas interminables, sueños cumplidos y momentos que te hagan sentir tan especial como eres. Gracias por iluminar nuestros días. Te deseo lo mejor del mundo Lau. ¡Te quiero mucho! 🥂❤️',
+        audio: 'audio/oscar.mp3'
+    },
+    { 
+        name: 'Valentina', 
+        photo: 'https://images.unsplash.com/photo-1501436513145-30f24e19fcc8?w=350', 
+        emoji: '🍭', 
+        message: '¡HAPPY BIRTHDAY LAUUU! 🎂💕 Mi dulzura preferida, en tu día especial quiero que brilles más que nunca. Que tengas torta, regalos, abrazos y toda la felicidad del mundo. Eres tan especial, Lau. ¡Te quiero un millón! 🍭✨',
+        audio: 'audio/valentina.mp3'
+    },
+    { 
+        name: 'Juliana', 
+        photo: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=350', 
+        emoji: '❤️', 
+        message: '¡Feliz cumple, LauM! 🎂 Ya estás más vieja, pero tranquila, el vino mejora con los años y tú también 😏. Que este día te traiga regalos caros y gente que te quiera mucho. Eres única, reina, ¡a romperla hoy! un abrazo',
+        audio: 'audio/juliana.mp3'
+    },
+    { 
+        name: 'Santiago', 
+        photo: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=350', 
+        emoji: '🕷️', 
+        message: '¡Feliz cumpleaños, mi Lau! 🎉💙 Mi cazadora favorita. Que este año te traiga aventuras increíbles, momentos que atesores para siempre y la felicidad que mereces. Gracias por ser esa persona, por hacer nuestros días más bonitos. Te quiero mucho. ¡A celebrar! 🕷️✨',
+        audio: 'audio/santiago.mp3',
+        special: true 
+    }
+];
+
+
+function showMessage(member) {
+    createConfetti();
+    document.getElementById('msgImage').style.backgroundImage = `url('${member.photo}')`;
+    document.getElementById('msgName').textContent = member.name;
+    document.getElementById('msgText').textContent = `"${member.message}"`;
+    document.getElementById('messageOverlay').classList.add('active');
+    
+    // 🎙️ REPRODUCE AUDIO SI EXISTE
+    if(member.audio) {
+        playMemberAudio(member.audio);
+    }
+}
+
+function playMemberAudio(audioPath) {
+    const audio = new Audio(audioPath);
+    audio.volume = 0.8;
+    audio.play().catch(err => console.log('Audio no encontrado:', err));
+}
+document.addEventListener('DOMContentLoaded', () => {
+    loadMembers();
+    createFloatingPetals();
+});
+
+
+function loadMembers() {
+    const grid = document.getElementById('membersGrid');
+    members.forEach((m, i) => {
+        const card = document.createElement('div');
+        card.className = `member-card-adqa ${m.special ? 'me' : ''}`;
+        card.style.animationDelay = `${i * 0.1}s`;
+        card.innerHTML = `
+            <div class="member-image" style="background-image: url('${m.photo}')"></div>
+            <h3>${m.name}</h3>
+            <p>${m.emoji}</p>
+        `;
+        card.onclick = () => showMessage(m);
+        grid.appendChild(card);
+    });
+}
+
+
+function closeMessage() {
+    document.getElementById('messageOverlay').classList.remove('active');
+}
+
+function createConfetti() {
+    for(let i = 0; i < 50; i++) {
+        setTimeout(() => {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.textContent = '💕';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = '-50px';
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 3000);
+        }, i * 20);
+    }
+}
+
+function createFloatingPetals() {
+    setInterval(() => {
+        const petal = document.createElement('div');
+        petal.textContent = '💕';
+        petal.style.cssText = `
+            position: fixed; left: ${Math.random()*100}vw; top: -20px;
+            font-size: 1.2em; animation: fall 5s linear forwards;
+            pointer-events: none; z-index: 1; opacity: 0.6;
+        `;
+        document.getElementById('petalsContainer').appendChild(petal);
+        setTimeout(() => petal.remove(), 5000);
+    }, 1200);
+}
+
+function toggleAdqaMusic() {
+    const audio = document.getElementById('adqaMusic');
+    const btn = document.getElementById('adqaMusicBtn');
+    if(audio.paused) {
+        audio.play();
+        btn.textContent = '🔇';
+    } else {
+        audio.pause();
+        btn.textContent = '🎵';
+    }
+}
+
+document.addEventListener('click', (e) => {
+    if(e.target.id === 'messageOverlay') closeMessage();
+});
+// Función para toggle del menú
+function toggleMenu() {
+    const nav = document.querySelector('.main-nav');
+    const hamburger = document.querySelector('.hamburger');
+    
+    nav.classList.toggle('active');
+    
+    // Cambiar el ícono
+    if(nav.classList.contains('active')) {
+        hamburger.innerHTML = '✕';
+    } else {
+        hamburger.innerHTML = '☰';
+    }
+}
+
+// Cerrar menú al hacer clic en un enlace (móvil)
+document.querySelectorAll('.main-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+        const nav = document.querySelector('.main-nav');
+        const hamburger = document.querySelector('.hamburger');
+        if(window.innerWidth <= 768) {
+            nav.classList.remove('active');
+            hamburger.innerHTML = '☰';
+        }
+    });
+});
+
+// Cerrar menú al hacer clic fuera
+document.addEventListener('click', (e) => {
+    const nav = document.querySelector('.main-nav');
+    const hamburger = document.querySelector('.hamburger');
+    
+    if(!nav.contains(e.target) && !hamburger.contains(e.target) && nav.classList.contains('active')) {
+        nav.classList.remove('active');
+        hamburger.innerHTML = '☰';
+    }
+});
+    </script>
+</body>
+</html>

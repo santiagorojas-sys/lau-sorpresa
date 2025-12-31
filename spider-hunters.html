@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Spider Hunters' Club - Laura's Birthday</title>
+    <link rel="stylesheet" href="css/spider-game.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1>🕷️ The Spider Hunters' Club 🕷️</h1>
+            <p class="subtitle">¡Laura vs Las Arañas: El Juego Definitivo!</p>
+        </header>
+
+        <div class="game-stats">
+            <div class="stat-box">
+                <span class="stat-label">Puntuación:</span>
+                <span id="score" class="stat-value">0</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Tiempo:</span>
+                <span id="timer" class="stat-value">30</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Nivel:</span>
+                <span id="level" class="stat-value">1</span>
+            </div>
+        </div>
+
+        <div id="gameArea" class="game-area">
+            <div id="startScreen" class="start-screen">
+                <h2>¡Bienvenida al Club de Cazadores de Arañas!</h2>
+                <p>Las arañas han invadido la casa. ¡Ayuda a Laura a atraparlas todas!</p>
+                <button id="startBtn" class="start-btn">¡COMENZAR LA CACERÍA!</button>
+            </div>
+        </div>
+
+        <div id="gameMessage" class="game-message"></div>
+
+        <div class="controls">
+            <button id="pauseBtn" class="control-btn" disabled>Pausar</button>
+            <button id="restartBtn" class="control-btn" style="display: none;">Jugar de Nuevo</button>
+            <a href="index.html" class="back-btn">Volver al Inicio</a>
+        </div>
+    </div>
+
+    <script src="js/spider-game.js"></script>
+</body>
+</html>

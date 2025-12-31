@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 BONUS SECRETO - Solo Para Lau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        
+:root {
+    --rosa-pastel: #FFD6E8;
+    --vino-tinto: #722F37;
+    --azul-oscuro: #134252;
+    --crema: #F5F1EB;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(-45deg, var(--rosa-pastel), #FFE4E1, #FFF1F5, #F8F4F8);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    overflow-x: hidden;
+}
+
+@keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+.music-control { position: fixed; top: 20px; left: 20px; z-index: 1000; }
+.music-control button { background: var(--rosa-pastel); border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; }
+.music-control button:hover { transform: scale(1.1); }
+
+.main-nav { 
+    position: relative; 
+    z-index: 1000; 
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+    background: transparent;
+}
+
+/* AGREGAR estos nuevos estilos para hamburguesa y responsive */
+.hamburger {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+    background: var(--rosa-pastel);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.hamburger:hover {
+    transform: scale(1.1);
+    background: var(--vino-tinto);
+    color: white;
+}
+
+/* REEMPLAZAR el @media existente con este más completo */
+@media (max-width: 768px) {
+    /* Hamburguesa y menú */
+    .hamburger {
+        display: block;
+    }
+    
+    .main-nav {
+        position: fixed !important;
+        right: -100%;
+        transition: right 0.3s ease;
+        top: 0;
+        height: 100vh;
+        width: 280px;
+        background: white;
+        padding: 0;
+    }
+    
+    .main-nav.active {
+        right: 0;
+    }
+    
+    .main-nav ul {
+        flex-direction: column;
+        height: 100%;
+        padding: 80px 20px 20px;
+        border-radius: 0;
+        gap: 1.5rem;
+    }
+    
+    .main-nav a {
+        display: block;
+        padding: 15px;
+        font-size: 1.1rem;
+    }
+    
+    /* Ajustes generales */
+    .hero-bonus {
+        padding: 1rem;
+        min-height: 100vh;
+    }
+    
+    .secret-title {
+        font-size: 3rem;
+    }
+    
+    .secret-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    /* Secciones de juegos */
+    .game-section {
+        margin: 0 0 3rem;
+        padding: 2rem 1rem;
+        border-radius: 20px;
+    }
+    
+    .game-icon {
+        font-size: 4rem;
+    }
+    
+    .game-title {
+        font-size: 2rem;
+    }
+    
+    .game-subtitle {
+        font-size: 1rem;
+    }
+    
+    /* MEMORY - Ajuste específico */
+    .memory-board {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+        max-width: 300px;
+    }
+    
+    .memory-card {
+        width: 65px;
+        height: 65px;
+        font-size: 1.5rem;
+        border-radius: 12px;
+    }
+    
+    .memory-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+        font-size: 1rem;
+    }
+    
+    /* SCRATCH - Ajuste específico */
+    .scratch-container {
+        width: 250px;
+        height: 250px;
+        border-width: 5px;
+    }
+    
+    #scratchCanvas {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .scratch-reveal {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+    
+    /* QUIZ - Ajuste específico */
+    .quiz-container {
+        padding: 0 0.5rem;
+    }
+    
+    #quizQuestion {
+        font-size: 1.2rem !important;
+    }
+    
+    .quiz-option {
+        padding: 1rem;
+        font-size: 0.95rem;
+    }
+    
+    /* RULETA - Ajuste específico */
+    .spin-wheel-container {
+        width: 250px;
+        height: 250px;
+    }
+    
+    #wheelCanvas {
+        width: 250px;
+        height: 250px;
+    }
+    
+    #wheelMessage {
+        font-size: 1.1rem !important;
+        padding: 0 1rem;
+    }
+    
+    /* BUSCAMINAS - Ajuste específico */
+    #minesweeperBoard {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 0.5rem !important;
+        max-width: 280px !important;
+    }
+    
+    #minesweeperBoard > div {
+        width: 60px !important;
+        height: 60px !important;
+        font-size: 1.5rem !important;
+    }
+    
+    /* Botones de juego */
+    .game-btn {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+}
+
+/* Media query para pantallas muy pequeñas */
+@media (max-width: 380px) {
+    .memory-board {
+        max-width: 260px;
+    }
+    
+    .memory-card {
+        width: 55px;
+        height: 55px;
+        font-size: 1.2rem;
+    }
+    
+    .scratch-container,
+    #scratchCanvas {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .spin-wheel-container,
+    #wheelCanvas {
+        width: 220px;
+        height: 220px;
+    }
+    
+    #minesweeperBoard {
+        max-width: 240px !important;
+    }
+    
+    #minesweeperBoard > div {
+        width: 50px !important;
+        height: 50px !important;
+    }
+}
+.main-nav ul { list-style: none; display: flex; gap: 1rem; background: rgba(255,255,255,0.95); padding: 1rem 1.5rem; border-radius: 25px; backdrop-filter: blur(10px); box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+.main-nav a { text-decoration: none; color: var(--vino-tinto); font-weight: 600; padding: 8px 15px; border-radius: 15px; transition: all 0.3s ease; }
+.main-nav a:hover { background: var(--rosa-pastel); transform: translateY(-2px); }
+
+.bonus-link { background: linear-gradient(135deg, var(--rosa-pastel), #FFB6C1) !important; color: var(--vino-tinto) !important; animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+main { position: relative; z-index: 10; }
+
+.hero-bonus { min-height: 80vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--rosa-pastel), #FFE4E1, #FFF1F5); padding: 2rem; text-align: center; position: relative; }
+.hero-bonus::before { content: '🎮🔒'; position: absolute; font-size: 20rem; opacity: 0.08; top: 20%; left: 10%; pointer-events: none; }
+
+.secret-screen { max-width: 600px; margin: 0 auto; }
+.secret-title { font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--vino-tinto); margin-bottom: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+.secret-subtitle { font-size: 1.6rem; color: var(--azul-oscuro); margin-bottom: 3rem; font-weight: 500; line-height: 1.5; }
+
+.secret-input-container { background: white; padding: 3rem; border-radius: 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); margin-bottom: 2rem; border: 3px solid transparent; transition: all 0.3s ease; }
+.secret-input-container:focus-within { border-color: var(--vino-tinto); box-shadow: 0 0 30px rgba(114,47,55,0.3); }
+
+.secret-input { width: 100%; padding: 1.5rem; border: 2px solid var(--rosa-pastel); border-radius: 20px; font-size: 1.3rem; font-family: 'Poppins', sans-serif; text-align: center; transition: all 0.3s ease; outline: none; }
+.secret-input:focus { border-color: var(--vino-tinto); transform: scale(1.02); }
+
+.secret-btn { width: 100%; padding: 1.5rem; background: linear-gradient(135deg, var(--vino-tinto), #8B4513); color: white; border: none; border-radius: 25px; font-size: 1.4rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 15px 40px rgba(114,47,55,0.4); }
+.secret-btn:hover { transform: translateY(-3px); box-shadow: 0 25px 60px rgba(114,47,55,0.6); }
+
+.secret-hint { background: rgba(255,182,193,0.2); padding: 1.5rem; border-radius: 15px; margin-top: 1.5rem; font-size: 1.1rem; color: var(--azul-oscuro); border-left: 4px solid var(--vino-tinto); }
+
+.games-section { display: none; padding: 2rem 1rem; }
+
+.game-section { max-width: 1000px; margin: 0 auto 6rem; background: rgba(255,255,255,0.95); border-radius: 40px; padding: 4rem; box-shadow: 0 25px 80px rgba(0,0,0,0.15); border: 2px solid transparent; position: relative; overflow: hidden; }
+.game-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--rosa-pastel), var(--vino-tinto), var(--rosa-pastel)); }
+
+.game-header { text-align: center; margin-bottom: 3rem; }
+.game-icon { font-size: 6rem; margin-bottom: 1rem; }
+.game-title { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--vino-tinto); margin-bottom: 0.5rem; }
+.game-subtitle { font-size: 1.3rem; color: var(--azul-oscuro); font-weight: 500; }
+
+.memory-container { max-width: 500px; margin: 0 auto; text-align: center; }
+.memory-board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin: 2rem auto; max-width: 400px; }
+.memory-card { width: 90px; height: 90px; border-radius: 18px; cursor: pointer; background: linear-gradient(135deg, var(--rosa-pastel), #FFB6C1); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; transition: all 0.4s ease; box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+.memory-card.flipped, .memory-card.matched { transform: rotateY(180deg); }
+.memory-card.matched { background: linear-gradient(135deg, #90EE90, #98FB98); }
+.memory-stats { display: flex; justify-content: space-around; margin: 2rem 0; font-size: 1.2rem; font-weight: 600; color: var(--vino-tinto); }
+
+.scratch-container { width: 350px; height: 350px; margin: 2rem auto; position: relative; border-radius: 25px; overflow: hidden; border: 8px solid var(--vino-tinto); box-shadow: 0 15px 50px rgba(0,0,0,0.3); }
+.scratch-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: crosshair; }
+.scratch-reveal { width: 100%; height: 100%; background: linear-gradient(135deg, #4CAF50, #81C784); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); font-size: 1.3rem; padding: 1.5rem; text-align: center; line-height: 1.4; }
+
+.quiz-container { max-width: 600px; margin: 2rem auto; }
+.quiz-option { background: white; padding: 1.5rem; margin: 1rem 0; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; border: 2px solid var(--rosa-pastel); font-size: 1.1rem; font-weight: 600; }
+.quiz-option:hover { transform: translateX(10px); background: var(--rosa-pastel); border-color: var(--vino-tinto); }
+.quiz-option.selected { background: var(--vino-tinto); color: white; border-color: var(--vino-tinto); }
+
+.spin-wheel-container { width: 300px; height: 300px; margin: 2rem auto; position: relative; border-radius: 50%; overflow: hidden; border: 8px solid var(--vino-tinto); box-shadow: 0 15px 50px rgba(0,0,0,0.3); }
+.spin-wheel { width: 100%; height: 100%; border-radius: 50%; transition: transform 3s cubic-bezier(0.23, 1, 0.32, 1); }
+.wheel-pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-top: 40px solid var(--vino-tinto); z-index: 10; }
+
+.game-btn { background: linear-gradient(135deg, var(--vino-tinto), #8B4513); color: white; border: none; padding: 1.2rem 2.5rem; border-radius: 30px; font-size: 1.2rem; font-weight: 600; cursor: pointer; margin: 0.5rem; transition: all 0.3s; box-shadow: 0 12px 35px rgba(114,47,55,0.4); }
+.game-btn:hover:not(:disabled) { transform: scale(1.08); box-shadow: 0 20px 50px rgba(114,47,55,0.6); }
+.game-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+@media (max-width: 768px) {
+    .game-section { margin: 0 auto 4rem; padding: 2rem 1.5rem; }
+    .game-title { font-size: 2.2rem; }
+    .memory-board { grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 320px; }
+    .memory-card { width: 70px; height: 70px; font-size: 1.8rem; }
+    .scratch-container { width: 280px; height: 280px; }
+}
+/* Ajuste adicional para el canvas en móvil */
+@media (max-width: 768px) {
+    #scratchCanvas {
+        max-width: 100%;
+        height: auto;
+    }
+}
+    </style>
+</head>
+
+<body class="page-no-nav">
+    <audio id="bonusMusic" loop preload="auto" volume="0.5">
+    <source src="audio/bonus-lau-song.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio
+</audio>
+
+
+
+    <div class="music-control">
+        <button onclick="toggleBonusMusic()" id="bonusMusicBtn">🎵</button>
+    </div>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">🏠 Inicio</a></li>
+            <li><a href="spider-hunters.html">🕷️ Cazadores</a></li>
+            <li><a href="adqa.html">💕 ADQA</a></li>
+            <li><a href="jardin.html">🌸 Jardín</a></li>
+            <li><a href="suenos.html">🗺️ Sueños</a></li>
+            <li><a href="razones.html">💝 Razones</a></li>
+            <li><a href="bonus.html" class="bonus-link">🎮 BONUS</a></li>
+        </ul>
+    </nav>
+<button class="hamburger" onclick="toggleMenu()">☰</button>
+    <main>
+        <!-- PANTALLA SECRETA -->
+        <section class="hero-bonus" id="secretScreen">
+            <div class="secret-screen">
+                <h1 class="secret-title">🎮 BONUS SECRETO 🎮</h1>
+                <p class="secret-subtitle">¿Quién es el Santiago que más quieres y por qué yo?</p>
+                
+                <div class="secret-input-container">
+                    <input type="text" class="secret-input" id="secretInput" 
+                           placeholder="Responde exactamente igual..." maxlength="70">
+                    <button class="secret-btn" onclick="checkSecret()">🔓 DESBLOQUEAR JUEGOS</button>
+                </div>
+
+                <div class="secret-hint">
+                    💡 <strong>Pista:</strong> "Responde exactamente igual" - mayúsculas, espacios, todo igual ✨
+                </div>
+            </div>
+        </section>
+
+        <!-- JUEGO 1: MEMORY -->
+        <section class="games-section" id="gamesSection">
+            <section class="game-section" style="background: linear-gradient(135deg, rgba(255,248,233,0.8), rgba(255,235,233,0.8));">
+                <div class="game-header">
+                    <div class="game-icon">🧠</div>
+                    <h1 class="game-title">Memory</h1>
+                    <p class="game-subtitle">Encuentra todos los pares de tu familia favorita 💕</p>
+                </div>
+                <div class="memory-container">
+                    <div class="memory-board" id="memoryBoard"></div>
+                    <div class="memory-stats">
+                        <span id="memoryFlips">Intentos: 0</span>
+                        <span id="memoryMatches">Aciertos: 0/8</span>
+                    </div>
+                    <button class="game-btn" onclick="initMemory()">🔄 Nuevo Juego</button>
+                </div>
+            </section>
+
+            <!-- JUEGO 2: SCRATCH -->
+            <section class="game-section" style="background: linear-gradient(135deg, rgba(233,248,233,0.8), rgba(248,248,255,0.8));">
+                <div class="game-header">
+                    <div class="game-icon">✨</div>
+                    <h1 class="game-title">Scratch Lau</h1>
+                    <p class="game-subtitle">Rasca despacito para descubrir mensajes especiales para ti 🌸</p>
+                </div>
+                <div style="text-align: center;">
+                    <div class="scratch-container">
+                        <div class="scratch-reveal" id="scratchReveal">
+                            <div style="font-size: 2rem; margin-bottom: 1rem;">🌟</div>
+                            <strong>¡ERES INCREÍBLE!</strong><br>
+                            <span style="font-size: 1.4rem;">La mujer más fuerte y hermosa</span><br><br>
+                            <div style="font-size: 1.8rem;">💪✨</div>
+                        </div>
+                        <canvas class="scratch-canvas" id="scratchCanvas" width="350" height="350"></canvas>
+                    </div>
+                    <button class="game-btn" onclick="resetScratch()" style="margin-top: 2rem;">🔄 Raspar Nuevamente</button>
+                </div>
+            </section>
+
+            <!-- JUEGO 3: QUIZ ROMÁNTICO -->
+            <section class="game-section" style="background: linear-gradient(135deg, rgba(255,233,248,0.8), rgba(248,233,255,0.8));">
+                <div class="game-header">
+                    <div class="game-icon">💕</div>
+                    <h1 class="game-title">¿Cuánto Me Conoces?</h1>
+                    <p class="game-subtitle">Contesta preguntas sobre ti misma y te demuestro que se bastante de ti 😏</p>
+                </div>
+                <div class="quiz-container">
+                    <h3 id="quizQuestion" style="text-align: center; font-size: 1.5rem; color: var(--vino-tinto); margin-bottom: 2rem;"></h3>
+                    <div id="quizOptions"></div>
+                    <p id="quizResult" style="text-align: center; font-size: 1.3rem; font-weight: 600; color: var(--vino-tinto); margin-top: 2rem;"></p>
+                    <button class="game-btn" onclick="nextQuiz()" style="width: 100%; margin-top: 1.5rem;">Siguiente Pregunta ➜</button>
+                </div>
+            </section>
+
+            <!-- JUEGO 4: RULETA DE SORPRESAS -->
+            <section class="game-section" style="background: linear-gradient(135deg, rgba(248,255,233,0.8), rgba(233,248,255,0.8));">
+                <div class="game-header">
+                    <div class="game-icon">🎡</div>
+                    <h1 class="game-title">Ruleta de Sorpresas</h1>
+                    <p class="game-subtitle">Gira y recibe un mensaje especial solo para ti 🎊</p>
+                </div>
+                <div style="text-align: center;">
+                    <div class="spin-wheel-container">
+                        <div class="wheel-pointer"></div>
+                        <canvas id="wheelCanvas" class="spin-wheel" width="300" height="300"></canvas>
+                    </div>
+                    <button class="game-btn" onclick="spinTheWheel()" style="font-size: 1.4rem; padding: 1.5rem 3rem; margin-top: 2rem;">🎡 ¡GIRAR!</button>
+                    <p id="wheelMessage" style="margin-top: 2rem; font-size: 1.4rem; font-weight: 600; color: var(--vino-tinto); min-height: 2.5rem;"></p>
+                </div>
+            </section>
+
+            <!-- JUEGO 5: BUSCAMINAS FÁCIL -->
+            <section class="game-section" style="background: linear-gradient(135deg, rgba(248,233,233,0.8), rgba(255,248,233,0.8));">
+                <div class="game-header">
+                    <div class="game-icon">💣</div>
+                    <h1 class="game-title">Buscaminas Lau</h1>
+                    <p class="game-subtitle">Encuentra los corazones sin tocar las bombas 💣</p>
+                </div>
+                <div style="text-align: center;">
+                    <div id="minesweeperBoard" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 400px; margin: 2rem auto;"></div>
+                    <p id="minesweeperScore" style="font-size: 1.3rem; font-weight: 600; color: var(--vino-tinto);">Corazones: 0/4</p>
+                    <button class="game-btn" onclick="initMinesweeper()" style="margin-top: 1.5rem;">🔄 Nuevo Juego</button>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <script>
+const CORRECT_ANSWER = "Tu porque todavia no tengo un hijo que se llame David Santiago";
+
+let memoryFlips = 0, memoryMatches = 0, scratching = false;
+let quizIndex = 0, quizScore = 0;
+let wheelSpinning = false;
+let minesFound = 0;
+
+const memoryPairs = ['🎤','🌙','⚡','💪','🛡️','🍭','❤️','🕷️'];
+
+const quizzes = [
+    { 
+        q: "¿Cuál es tu color favorito?", 
+        opts: ["Rosa pastel 💕", "Azul cielo", "Verde naturaleza 🌿"], 
+        ans: 0 
+    },
+    { 
+        q: "¿A dónde quieres viajar más?", 
+        opts: ["Lugares silenciosos 🌄", "Japón 🇯🇵", "Conciertos mundiales 🎵"], 
+        ans: 0 
+    },
+    { 
+        q: "¿Qué es lo que MÁS te gusta hacer?", 
+        opts: ["Leer libros 📚", "Cuidar flores 🌸", "Comer 💕"], 
+        ans: 0 
+    },
+    { 
+        q: "¿Cómo le dices a donde vives?", 
+        opts: ["Mi casa", "Mi ranchito", "Mi jardín secreto 🌺"], 
+        ans: 1
+    },
+    { 
+        q: "¿Cuál ha sido tu mayor miedo que estás venciendo?", 
+        opts: ["Hablar en público", "No terminar estudios", "Ser la mejor versión de ti 💪"], 
+        ans: 2 
+    }
+];
+
+
+const wheelMessages = [
+    "\"Eres todas las mujeres del mundo concentradas en una sola.\" —Pablo Neruda 💖",
+    "\"En tus ojos se refleja el universo entero, y en tu sonrisa, toda la luz del mundo.\" —Mario Benedetti 🌟",
+    "\"Tienes la belleza terrible de las tormentas: poderosa, salvaje e imposible de ignorar.\" —García Lorca ✨",
+    "\"Tu presencia es como la primavera: transformas todo a tu alrededor en algo más hermoso.\" —Victor Hugo 🌸",
+    "\"Eres la prueba viviente de que los milagros tienen nombre y apellido.\" —Gabriel García Márquez 💪",
+    "\"En ti se encuentran todas las respuestas a las preguntas que el mundo aún no ha hecho.\" —Octavio Paz ☀️",
+    "\"Tu alma tiene la profundidad del océano y la suavidad de sus olas al amanecer.\" —Isabel Allende 🌺",
+    "\"Eres poesía en movimiento, un verso que el universo recita con orgullo.\" —Julio Cortázar 💕"
+];
+
+// 🔐 PREGUNTA SECRETA
+function checkSecret() {
+    const answer = document.getElementById('secretInput').value.trim();
+    if(answer === CORRECT_ANSWER) {
+        document.getElementById('secretScreen').style.display = 'none';
+        document.getElementById('gamesSection').style.display = 'block';
+        document.getElementById('bonusMusic').play();
+        createConfettiBig();
+        initMemory();
+        initQuiz();
+        initMinesweeper();
+        drawWheel();
+    } else {
+        shakeInput();
+    }
+}
+
+function shakeInput() {
+    const input = document.getElementById('secretInput');
+    input.style.animation = 'shake 0.5s ease';
+}
+
+// 🧠 MEMORY
+function initMemory() {
+    memoryFlips = 0; memoryMatches = 0;
+    const cards = [...memoryPairs, ...memoryPairs];
+    shuffle(cards);
+    const board = document.getElementById('memoryBoard');
+    board.innerHTML = '';
+    cards.forEach((emoji) => {
+        const card = document.createElement('div');
+        card.className = 'memory-card';
+        card.dataset.emoji = emoji;
+        card.onclick = () => flipCard(card);
+        board.appendChild(card);
+    });
+    updateMemoryScore();
+}
+
+let flippedCards = [];
+function flipCard(card) {
+    if(flippedCards.length === 2 || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+    card.classList.add('flipped');
+    card.textContent = card.dataset.emoji;
+    flippedCards.push(card);
+    if(flippedCards.length === 2) {
+        memoryFlips++;
+        setTimeout(checkMatch, 1200);
+    }
+    updateMemoryScore();
+}
+
+function checkMatch() {
+    if(flippedCards[0].dataset.emoji === flippedCards[1].dataset.emoji) {
+        flippedCards.forEach(card => card.classList.add('matched'));
+        memoryMatches++;
+        if(memoryMatches === 8) createConfettiBig();
+    } else {
+        flippedCards.forEach(card => {
+            card.classList.remove('flipped');
+            card.textContent = '';
+        });
+    }
+    flippedCards = [];
+    updateMemoryScore();
+}
+
+function updateMemoryScore() {
+    document.getElementById('memoryFlips').textContent = `Intentos: ${memoryFlips}`;
+    document.getElementById('memoryMatches').textContent = `Aciertos: ${memoryMatches}/8`;
+}
+
+// ✨ SCRATCH
+const scratchCanvas = document.getElementById('scratchCanvas');
+const scratchCtx = scratchCanvas.getContext('2d');
+
+// Array de mensajes para el scratch (MEJORA - VA AQUÍ)
+const scratchMessages = [
+    {
+        icon: '🌟',
+        title: '¡ERES INCREÍBLE!',
+        subtitle: 'La mujer más fuerte y hermosa',
+        emoji: '💪✨'
+    },
+    {
+        icon: '❤️',
+        title: '¡TE QUIERO!',
+        subtitle: 'Eres mi persona favorita',
+        emoji: '😍💕'
+    },
+    {
+        icon: '🌺',
+        title: '¡ERES ÚNICA!',
+        subtitle: 'Como las flores de tu jardín',
+        emoji: '🌸🦋'
+    },
+    {
+        icon: '⭐',
+        title: '¡BRILLAS!',
+        subtitle: 'Iluminas todo a tu paso',
+        emoji: '✨🌟'
+    },
+    {
+        icon: '👑',
+        title: '¡ERES UNA REINA!',
+        subtitle: 'Mereces todo lo bueno del mundo',
+        emoji: '💎👸'
+    },
+    {
+        icon: '🌈',
+        title: '¡ERES MÁGICA!',
+        subtitle: 'Haces que todo sea mejor',
+        emoji: '🪄✨'
+    }
+];
+
+let currentMessageIndex = 0;
+
+// Inicializar el scratch
+function initScratch() {
+    // Mantener el tamaño original del canvas
+    scratchCanvas.width = 350;
+    scratchCanvas.height = 350;
+    
+    // Llenar con color gris para cubrir el mensaje
+    scratchCtx.fillStyle = '#ddd';
+    scratchCtx.fillRect(0, 0, scratchCanvas.width, scratchCanvas.height);
+    
+    // Agregar texto sobre la capa gris
+    scratchCtx.fillStyle = '#666';
+    scratchCtx.font = 'bold 20px Poppins';
+    scratchCtx.textAlign = 'center';
+    scratchCtx.fillText('RASCA AQUÍ', scratchCanvas.width/2, scratchCanvas.height/2);
+}
+
+// Event listeners para mouse
+scratchCanvas.onmousedown = (e) => { 
+    scratching = true; 
+    handleScratch(e);
+};
+scratchCanvas.onmouseup = () => scratching = false;
+scratchCanvas.onmousemove = (e) => {
+    if(scratching) handleScratch(e);
+};
+scratchCanvas.onmouseleave = () => scratching = false;
+
+// Event listeners para touch (móvil)
+scratchCanvas.ontouchstart = (e) => { 
+    scratching = true; 
+    e.preventDefault();
+    const touch = e.touches[0];
+    const mouseEvent = new MouseEvent('mousedown', {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+    });
+    handleScratch(mouseEvent);
+};
+
+scratchCanvas.ontouchmove = (e) => { 
+    if(scratching) {
+        e.preventDefault();
+        const touch = e.touches[0];
+        const mouseEvent = new MouseEvent('mousemove', {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });
+        handleScratch(mouseEvent);
+    }
+};
+
+scratchCanvas.ontouchend = () => scratching = false;
+
+function handleScratch(e) {
+    if(!scratching) return;
+    
+    const rect = scratchCanvas.getBoundingClientRect();
+    const scaleX = scratchCanvas.width / rect.width;
+    const scaleY = scratchCanvas.height / rect.height;
+    
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top) * scaleY;
+    
+    // Borrar círculo para revelar
+    scratchCtx.globalCompositeOperation = 'destination-out';
+    scratchCtx.beginPath();
+    scratchCtx.arc(x, y, 30, 0, Math.PI * 2);
+    scratchCtx.fill();
+}
+
+// Función mejorada que cambia mensajes
+function resetScratch() {
+    scratching = false;
+    
+    // Cambiar mensaje
+    currentMessageIndex = (currentMessageIndex + 1) % scratchMessages.length;
+    const msg = scratchMessages[currentMessageIndex];
+    
+    document.getElementById('scratchReveal').innerHTML = `
+        <div style="font-size: 2rem; margin-bottom: 1rem;">${msg.icon}</div>
+        <strong>${msg.title}</strong><br>
+        <span style="font-size: 1.4rem;">${msg.subtitle}</span><br><br>
+        <div style="font-size: 1.8rem;">${msg.emoji}</div>
+    `;
+    
+    initScratch();
+}
+
+// Inicializar cuando se carguen los juegos
+initScratch();
+
+// 💕 QUIZ
+function initQuiz() {
+    quizIndex = 0;
+    quizScore = 0;
+    loadQuiz();
+}
+
+function loadQuiz() {
+    const q = quizzes[quizIndex];
+    document.getElementById('quizQuestion').textContent = q.q;
+    document.getElementById('quizResult').textContent = '';
+    const options = document.getElementById('quizOptions');
+    options.innerHTML = '';
+    q.opts.forEach((opt, i) => {
+        const btn = document.createElement('div');
+        btn.className = 'quiz-option';
+        btn.textContent = opt;
+        btn.onclick = () => answerQuiz(i, q.ans);
+        options.appendChild(btn);
+    });
+}
+
+function answerQuiz(selected, correct) {
+    if(selected === correct) {
+        quizScore++;
+        document.getElementById('quizResult').textContent = '¡CORRECTO! ❤️';
+        createHearts();
+    } else {
+        document.getElementById('quizResult').textContent = '❌ La respuesta era: ' + quizzes[quizIndex].opts[correct];
+    }
+    document.querySelectorAll('.quiz-option').forEach(el => el.style.pointerEvents = 'none');
+}
+
+function nextQuiz() {
+    quizIndex = (quizIndex + 1);
+    
+    // Si ya respondió todas las preguntas
+    if(quizIndex >= quizzes.length) {
+        // Mostrar mensaje final
+        document.getElementById('quizQuestion').textContent = "¡Quiz Completado! 🎉";
+        document.getElementById('quizOptions').innerHTML = '';
+        document.getElementById('quizResult').innerHTML = `
+            <div style="text-align: center; padding: 2rem;">
+                <p style="font-size: 1.8rem; color: var(--vino-tinto); margin-bottom: 1rem;">
+                    Ves, una que otra cosita sé de ti jajaja 😏
+                </p>
+                <p style="font-size: 1.4rem; color: var(--azul-oscuro);">
+                    Tu puntuación: ${quizScore}/${quizzes.length} ❤️
+                </p>
+            </div>
+        `;
+        
+        // Cambiar el botón para reiniciar
+        const btn = document.querySelector('.quiz-container .game-btn');
+        btn.textContent = '🔄 Jugar de Nuevo';
+        btn.onclick = () => {
+            initQuiz();
+            btn.textContent = 'Siguiente Pregunta ➜';
+            btn.onclick = () => nextQuiz();
+        };
+        
+        // Celebración si sacó todo bien
+        if(quizScore === quizzes.length) {
+            createConfettiBig();
+        }
+    } else {
+        // Continuar con la siguiente pregunta
+        loadQuiz();
+    }
+}
+
+// 🎡 RULETA
+function drawWheel() {
+    const canvas = document.getElementById('wheelCanvas');
+    const ctx = canvas.getContext('2d');
+    const centerX = 150, centerY = 150, radius = 140;
+    const segments = wheelMessages.length;
+    
+    for(let i = 0; i < segments; i++) {
+        const angle = (Math.PI * 2 / segments) * i;
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.rotate(angle);
+        ctx.fillStyle = `hsl(${(i * 360 / segments + 320)}, 70%, 60%)`;
+        ctx.beginPath();
+        ctx.arc(0, 0, radius, 0, Math.PI * 2 / segments);
+        ctx.lineTo(0, 0);
+        ctx.fill();
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 12px Poppins';
+        ctx.textAlign = 'right';
+        ctx.fillText(wheelMessages[i].substring(0, 10), radius - 20, 5);
+        ctx.restore();
+    }
+}
+
+function spinTheWheel() {
+    if(wheelSpinning) return;
+    wheelSpinning = true;
+    const canvas = document.getElementById('wheelCanvas');
+    const spins = 5 + Math.random() * 3;
+    const finalAngle = Math.random() * 360;
+    const totalRotation = spins * 360 + finalAngle;
+    
+    canvas.style.transform = `rotate(${totalRotation}deg)`;
+    
+    setTimeout(() => {
+        const segments = wheelMessages.length;
+        const winIndex = Math.floor((360 - (finalAngle % 360)) / (360 / segments)) % segments;
+        document.getElementById('wheelMessage').textContent = wheelMessages[winIndex];
+        wheelSpinning = false;
+        createConfetti();
+    }, 3000);
+}
+
+// 💣 MINESWEEPER
+function initMinesweeper() {
+    minesFound = 0;
+    const board = document.getElementById('minesweeperBoard');
+    board.innerHTML = '';
+    const cells = new Array(16).fill(0);
+    for(let i = 0; i < 4; i++) cells[Math.floor(Math.random() * 16)] = 1;
+    cells.forEach((isMine, i) => {
+        const cell = document.createElement('div');
+        cell.style.cssText = 'width: 80px; height: 80px; background: linear-gradient(135deg, #FFB6C1, #FFD6E8); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: all 0.3s;';
+        cell.onclick = () => {
+            if(isMine) {
+                cell.textContent = '💣';
+                cell.style.background = '#ff6b6b';
+                alert('¡Ay! ¡Tocaste una bomba! Intenta de nuevo 💥');
+                initMinesweeper();
+            } else {
+                cell.textContent = '💖';
+                cell.style.background = '#90EE90';
+                minesFound++;
+                document.getElementById('minesweeperScore').textContent = `Corazones: ${minesFound}/4`;
+                if(minesFound === 4) {
+                    alert('¡¡¡GANASTE!!! 🎉 ¡Encontraste todos los corazones! Te amo 💕');
+                    createConfettiBig();
+                }
+                cell.style.pointerEvents = 'none';
+            }
+        };
+        board.appendChild(cell);
+    });
+}
+
+// UTILIDADES
+function shuffle(array) {
+    for(let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function createConfettiBig() {
+    for(let i = 0; i < 80; i++) {
+        setTimeout(() => {
+            const confetti = document.createElement('div');
+            confetti.textContent = ['🌟','✨','🎉','💫','⭐'][Math.floor(Math.random()*5)];
+            confetti.style.cssText = `position: fixed; left: ${Math.random()*100}vw; top: -30px; font-size: ${1.5 + Math.random()}rem; animation: fall 5s linear forwards; pointer-events: none; z-index: 5000;`;
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 5000);
+        }, i * 30);
+    }
+}
+
+function createHearts() {
+    for(let i = 0; i < 15; i++) {
+        setTimeout(() => {
+            const heart = document.createElement('div');
+            heart.textContent = '💖';
+            heart.style.cssText = `position: fixed; left: 50%; top: 50%; font-size: 2rem; pointer-events: none; z-index: 2000; animation: heartFloat 3s ease-out forwards;`;
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 3000);
+        }, i * 80);
+    }
+}
+
+function createConfetti() {
+    for(let i = 0; i < 40; i++) {
+        setTimeout(() => {
+            const confetti = document.createElement('div');
+            confetti.textContent = '✨';
+            confetti.style.cssText = `position: fixed; left: ${Math.random()*100}vw; top: -20px; font-size: 1.5rem; animation: fall 4s linear forwards; pointer-events: none; z-index: 3000;`;
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 4000);
+        }, i * 25);
+    }
+}
+
+function toggleBonusMusic() {
+    const audio = document.getElementById('bonusMusic');
+    const btn = document.getElementById('bonusMusicBtn');
+    if(audio.paused) {
+        audio.play(); btn.textContent = '🔇';
+    } else {
+        audio.pause(); btn.textContent = '🎵';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fall { to { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
+        @keyframes heartFloat { to { transform: translate(${Math.random()*300-150}px, -400px) rotate(360deg); opacity: 0; } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-12px); } 75% { transform: translateX(12px); } }
+    `;
+    document.head.appendChild(style);
+});
+function toggleMenu() {
+    const nav = document.querySelector('.main-nav');
+    const hamburger = document.querySelector('.hamburger');
+    
+    nav.classList.toggle('active');
+    
+    // Cambiar el ícono
+    if(nav.classList.contains('active')) {
+        hamburger.innerHTML = '✕';
+    } else {
+        hamburger.innerHTML = '☰';
+    }
+}
+
+// Cerrar menú al hacer clic en un enlace (móvil)
+document.querySelectorAll('.main-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+        const nav = document.querySelector('.main-nav');
+        const hamburger = document.querySelector('.hamburger');
+        if(window.innerWidth <= 768) {
+            nav.classList.remove('active');
+            hamburger.innerHTML = '☰';
+        }
+    });
+});
+
+// Cerrar menú al hacer clic fuera
+document.addEventListener('click', (e) => {
+    const nav = document.querySelector('.main-nav');
+    const hamburger = document.querySelector('.hamburger');
+    
+    if(nav && hamburger && !nav.contains(e.target) && !hamburger.contains(e.target) && nav.classList.contains('active')) {
+        nav.classList.remove('active');
+        hamburger.innerHTML = '☰';
+    }
+});
+    </script>
+</body>
+</html>

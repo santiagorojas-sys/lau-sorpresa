@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 Jardín de Lau - El Amor por las Flores</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+:root {
+  --rosa-pastel: #FFD6E8;
+  --vino-tinto: #722F37;
+  --azul-oscuro: #134252;
+  --crema: #F5F1EB;
+  --verde-jardin: #2D5016;
+  --verde-claro: #7CB342;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 50%, #FFF8F0 100%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><filter id="blur"><feGaussianBlur in="SourceGraphic" stdDeviation="2"/></filter></defs><path d="M0,400 Q300,300 600,400 T1200,400 L1200,800 L0,800 Z" fill="%23C8E6C9" opacity="0.3" filter="url(%23blur)"/><path d="M0,500 Q300,400 600,500 T1200,500 L1200,800 L0,800 Z" fill="%2381C784" opacity="0.2" filter="url(%23blur)"/><circle cx="100" cy="600" r="80" fill="%23FFD6E8" opacity="0.15"/><circle cx="1100" cy="650" r="100" fill="%23FFD6E8" opacity="0.1"/></svg>') center/cover;
+    background-attachment: fixed;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.bees-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.bee {
+    position: absolute;
+    font-size: 6rem;
+    animation: flyBee linear infinite;
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+    z-index: 50;
+}
+
+
+@keyframes flyBee {
+    0% { transform: translateX(-100px) translateY(0); }
+    25% { transform: translateX(0) translateY(-50px); }
+    50% { transform: translateX(100px) translateY(0); }
+    75% { transform: translateX(0) translateY(50px); }
+    100% { transform: translateX(-100px) translateY(0); }
+}
+
+.music-control {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.music-control button {
+    background: var(--rosa-pastel);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.music-control button:hover { transform: scale(1.1); }
+
+.main-nav {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    background: rgba(255,255,255,0.95);
+    padding: 1rem 1.5rem;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--vino-tinto);
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.main-nav a:hover { background: var(--rosa-pastel); transform: translateY(-2px); }
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--crema);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+/* Ajustar el main para que no quede detrás de la navegación fija */
+main {
+    margin-top: 80px; /* Ajusta este valor según la altura de tu navegación */
+}
+/* HAMBURGUESA Y MENÚ RESPONSIVE */
+.hamburger {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.hamburger:hover {
+    transform: scale(1.1);
+    background: var(--verde-claro);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    /* Mostrar el botón hamburguesa */
+    .hamburger {
+        display: block;
+    }
+    
+    /* Ocultar el menú por defecto en móviles */
+    .main-nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: -300px;
+        width: 250px;
+        height: 100vh;
+        background-color: var(--crema);
+        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+        transition: right 0.3s ease;
+        padding-top: 60px;
+        z-index: 999;
+    }
+    
+    /* Cuando el menú está activo */
+    .main-nav.active {
+        right: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .main-nav ul {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .main-nav li {
+        width: 100%;
+    }
+    
+    .main-nav a {
+        display: block;
+        padding: 1rem 2rem;
+        border-bottom: 1px solid var(--rosa-pastel);
+    }
+}
+
+/* Para pantallas grandes (PC) - asegurar que el menú esté visible */
+@media (min-width: 769px) {
+    .hamburger {
+        display: none !important;
+    }
+    
+    .main-nav {
+        display: flex !important;
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+        background: none !important;
+        box-shadow: none !important;
+        padding-top: 0 !important;
+        right: auto !important;
+    }
+}
+    
+    /* Ajustes adicionales para móvil */
+    .hero-title-jardin { 
+        font-size: 2.5rem; 
+    }
+    
+    .hero-subtitle-jardin {
+        font-size: 1.2rem;
+    }
+    
+    .section-title-jardin h2 { 
+        font-size: 2rem; 
+    }
+    
+    .lirios-content { 
+        grid-template-columns: 1fr; 
+    }
+    
+    .hero-jardin::after { 
+        font-size: 8rem; 
+        right: 10px;
+    }
+    
+    .frases-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .frase-card {
+        padding: 2rem;
+    }
+    
+    .frase-card p {
+        font-size: 1.1rem;
+    }
+    
+    .galeria-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .cuidados-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .bee {
+        font-size: 3rem;
+    }
+
+@media (max-width: 380px) {
+    .hero-title-jardin { 
+        font-size: 2rem; 
+    }
+    
+    .hero-subtitle-jardin {
+        font-size: 1rem;
+    }
+}
+main { position: relative; z-index: 10; }
+
+.hero-jardin {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(255,214,235,0.9), rgba(200,230,201,0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path d="M0,300 Q150,200 300,300 T600,300 T900,300 T1200,300 L1200,600 L0,600 Z" fill="%237CB342" opacity="0.3"/><circle cx="200" cy="250" r="40" fill="%23FF69B4" opacity="0.2"/><circle cx="600" cy="200" r="50" fill="%23FFD6E8" opacity="0.15"/><circle cx="1000" cy="280" r="45" fill="%23FF69B4" opacity="0.15"/></svg>');
+    background-size: cover;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.hero-jardin::after {
+    content: '🌸';
+    position: absolute;
+    font-size: 15rem;
+    opacity: 0.08;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.hero-content-jardin {
+    max-width: 800px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title-jardin {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    color: var(--vino-tinto);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.hero-subtitle-jardin {
+    font-size: 1.5rem;
+    color: var(--verde-jardin);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.frases-section {
+    padding: 4rem 2rem;
+    background: rgba(255,255,255,0.95);
+}
+
+.section-title-jardin {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title-jardin h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    color: var(--vino-tinto);
+    margin-bottom: 0.5rem;
+}
+
+.frases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.frase-card {
+    background: linear-gradient(135deg, var(--rosa-pastel), #FFE4E1);
+    padding: 2.5rem;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    border-left: 5px solid var(--vino-tinto);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.frase-card::before {
+    content: '🌸';
+    position: absolute;
+    font-size: 5rem;
+    opacity: 0.1;
+    right: -20px;
+    top: -20px;
+    pointer-events: none;
+}
+
+.frase-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 25px 60px rgba(255,182,193,0.4);
+}
+
+.frase-card p {
+    font-size: 1.3rem;
+    color: var(--azul-oscuro);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+}
+
+.frase-author {
+    font-size: 0.95rem;
+    color: var(--vino-tinto);
+    font-style: italic;
+    text-align: right;
+}
+
+.galeria-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #F1F8E9, #E8F5E9);
+}
+
+.galeria-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    color: var(--vino-tinto);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.galeria-item {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.galeria-item:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 25px 60px rgba(255,182,193,0.4);
+}
+
+.galeria-img {
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.galeria-info {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.galeria-info h3 {
+    color: var(--vino-tinto);
+    margin-bottom: 0.5rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.galeria-info p {
+    color: var(--azul-oscuro);
+    font-size: 0.95rem;
+}
+
+.lirios-section {
+    padding: 4rem 2rem;
+    background: rgba(255,255,255,0.98);
+}
+
+.lirios-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    color: var(--vino-tinto);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.lirios-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.lirios-info {
+    background: linear-gradient(135deg, rgba(124,179,66,0.1), rgba(255,214,235,0.1));
+    padding: 2.5rem;
+    border-radius: 20px;
+    border-left: 5px solid var(--verde-claro);
+}
+
+.lirios-info h3 {
+    color: var(--verde-jardin);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.lirios-info p {
+    color: var(--azul-oscuro);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+}
+
+.lirios-info ul {
+    list-style: none;
+    margin-left: 0;
+}
+
+.lirios-info li {
+    color: var(--azul-oscuro);
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.lirios-info li::before {
+    content: '🌸';
+    position: absolute;
+    left: 0;
+}
+
+.cuidados-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #FFF8E1, #F1F8E9);
+}
+
+.cuidados-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    color: var(--vino-tinto);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.cuidados-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cuidado-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    border-top: 4px solid var(--verde-claro);
+    transition: all 0.4s ease;
+}
+
+.cuidado-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 60px rgba(124,179,66,0.3);
+}
+
+.cuidado-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.cuidado-card h3 {
+    color: var(--vino-tinto);
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.cuidado-card p {
+    color: var(--azul-oscuro);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+footer {
+    padding: 3rem 2rem;
+    background: var(--vino-tinto);
+    color: white;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+footer p { margin: 0.5rem 0; }
+
+@media (max-width: 768px) {
+    .hero-title-jardin { font-size: 3rem; }
+    .section-title-jardin h2 { font-size: 2.5rem; }
+    .lirios-content { grid-template-columns: 1fr; }
+    .main-nav ul { flex-wrap: wrap; gap: 0.5rem; }
+    .hero-jardin::after { font-size: 8rem; }
+}
+.bonus-link {
+    background: linear-gradient(135deg, var(--rosa-pastel), #FFB6C1) !important;
+    color: var(--vino-tinto) !important;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+    </style>
+</head>
+<body class="page-no-nav">
+    <audio id="jardinMusic" loop>
+        <source src="audio/jardin-melody.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="bees-container" id="beesContainer"></div>
+
+    <div class="music-control">
+        <button onclick="toggleJardinMusic()" id="jardinMusicBtn">🎵</button>
+    </div>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">🏠 Inicio</a></li>
+            <li><a href="spider-hunters.html">🕷️ Cazadores</a></li>
+            <li><a href="jardin.html">🌸 Jardín</a></li>
+            <li><a href="suenos.html">🗺️ Sueños</a></li>
+           <li><a href="razones.html">💝 Razones</a></li>
+<li><a href="bonus.html" class="bonus-link">🎮 BONUS</a></li>
+
+        </ul>
+    </nav>
+<button class="hamburger" onclick="toggleMenu()">☰</button>
+    <main>
+        <section class="hero-jardin">
+            <div class="hero-content-jardin">
+                <h1 class="hero-title-jardin">🌸 Mi Jardín Secreto 🌸</h1>
+                <p class="hero-subtitle-jardin">Un espacio para admirar la belleza de las flores y el amor por la naturaleza</p>
+            </div>
+        </section>
+
+        <section class="frases-section">
+            <div class="section-title-jardin">
+                <h2>💚 Frases Inspiradoras</h2>
+            </div>
+            <div class="frases-grid">
+                <div class="frase-card">
+                    <p>"Las flores son la expresión más linda de la naturaleza, así como tú eres la expresión más bonita del amor"</p>
+                    <div class="frase-author">— Para Lau</div>
+                </div>
+                <div class="frase-card">
+                    <p>"En cada flor hay un pedazo de tu alma, en cada pétalo hay un momento nuestro"</p>
+                    <div class="frase-author">— ADQA</div>
+                </div>
+                <div class="frase-card">
+                    <p>"Las flores enseñan que incluso después de la tormenta, siempre llega el sol y la belleza regresa"</p>
+                    <div class="frase-author">— Sabiduría Natural</div>
+                </div>
+                <div class="frase-card">
+                    <p>"Tu amor por las flores es tan puro como el rocío en una rosa recién abierta"</p>
+                    <div class="frase-author">— Tus Amigas</div>
+                </div>
+                <div class="frase-card">
+                    <p>"Cuidar una flor es como cuidar un corazón: con paciencia, amor y dedicación"</p>
+                    <div class="frase-author">— Verdad Eterna</div>
+                </div>
+                <div class="frase-card">
+                    <p>"Lau, eres como una flor rara que solo florece en primavera, hermosa y especial"</p>
+                    <div class="frase-author">— Tus Amigas</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="galeria-section">
+            <h2>📸 Lau + Flores = Perfección</h2>
+            <div class="galeria-grid">
+                <div class="galeria-item">
+                    <div class="galeria-video-container" style="width: 100%; height: 250px; background: #000; border-radius: 20px 20px 0 0; overflow: hidden;">
+                        <video width="100%" height="100%" style="object-fit: cover;" controls>
+                            <source src="videos/lau-flores1.mp4" type="video/mp4">
+                            Tu navegador no soporta video
+                        </video>
+                    </div>
+                    <div class="galeria-info">
+                        <h3>✨ Tu Sonrisa Brilla</h3>
+                        <p>Como las flores al amanecer, tu sonrisa ilumina todo a tu alrededor. Eres hermosa, Lau 💕</p>
+                    </div>
+                </div>
+
+                <div class="galeria-item">
+                    <div class="galeria-img" style="background-image: url('img/lau-flores3.jpg')"></div>
+
+                    <div class="galeria-info">
+                        <h3>🌷 Tulipán Perfecto</h3>
+                        <p>Como un tulipán en primavera, traes colores a nuestras vidas. Tu presencia es un rayo de esperanza 🌈</p>
+                    </div>
+                </div>
+
+                <div class="galeria-item">
+                    <div class="galeria-img" style="background-image: url('img/lau-flores4.jpg')"></div>
+
+                    <div class="galeria-info">
+                        <h3>🌹 Rosa Silvestre</h3>
+                        <p>Como una rosa silvestre, eres hermosa en tu naturalidad. Sin necesidad de perfección, simplemente perfecta 🌹</p>
+                    </div>
+                </div>
+
+                <div class="galeria-item">
+                    <div class="galeria-video-container" style="width: 100%; height: 250px; background: #000; border-radius: 20px 20px 0 0; overflow: hidden;">
+                        <video width="100%" height="100%" style="object-fit: cover;" controls>
+                            <source src="videos/lau-flores2.mp4" type="video/mp4">
+                            Tu navegador no soporta video
+                        </video>
+                    </div>
+                    <div class="galeria-info">
+                        <h3>💝 Eres Nuestro Tesoro</h3>
+                        <p>Más valiosa que cualquier joya. Tu amistad, tu amor, tu presencia. Todo de ti nos hace ricos 💎</p>
+                    </div>
+                </div>
+
+                <div class="galeria-item">
+                    <div class="galeria-img" style="background-image: url('img/girasol.jpg')"></div>
+
+                    <div class="galeria-info">
+                        <h3>🌻 Girasol de Luz</h3>
+                        <p>Como un girasol que sigue al sol, tu energía nos guía. Eres la luz que ilumina nuestro camino 🌻</p>
+                    </div>
+                </div>
+
+                <div class="galeria-item">
+                    <div class="galeria-img" style="background-image: url('img/cerezo.jpg')"></div>
+
+                    <div class="galeria-info">
+                        <h3>🌸 Flor de Cerezo</h3>
+                        <p>Delicada pero fuerte, como la flor de cerezo en primavera. Tu belleza es efímera pero eterna en nuestros corazones 🌸</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="lirios-section">
+            <h2>🌸 Los Lirios: Las Flores de Lau</h2>
+            <div class="lirios-content">
+                <div class="lirios-info">
+                    <h3>¿Qué Son Los Lirios?</h3>
+                    <p>Los lirios son flores herbáceas con pétalos grandes y elegantes, pertenecientes a la familia Liliaceae. Existen más de 100 especies diferentes en todo el mundo.</p>
+                    
+                    <h3 style="margin-top: 1.5rem;">Características Principales</h3>
+                    <ul>
+                        <li><strong>Altura:</strong> Entre 30 cm a 2 metros</li>
+                        <li><strong>Flores:</strong> 6 pétalos (tépalos) vibrantes</li>
+                        <li><strong>Colores:</strong> Rojo, púrpura, blanco, rosa, amarillo, naranja</li>
+                        <li><strong>Aroma:</strong> Intenso y dulce (muchas variedades)</li>
+                        <li><strong>Floración:</strong> Primavera y verano</li>
+                        <li><strong>Duración:</strong> 1-3 años por bulbo</li>
+                    </ul>
+
+                    <h3 style="margin-top: 1.5rem;">Dato Curioso Para Lau</h3>
+                    <p style="background: rgba(255,182,193,0.2); padding: 1rem; border-radius: 10px; margin-top: 1rem;">Los lirios simbolizan la pureza, la elegancia y el renacimiento. En la cultura antigua, eran flores sagradas dedicadas a los dioses. ¡Perfectas para ti! 💕</p>
+                </div>
+
+                <div class="lirios-info">
+                    <h3>Variedades Populares</h3>
+                    <ul>
+                        <li><strong>Lirio Asiático:</strong> Flores grandes, muy perfumadas</li>
+                        <li><strong>Lirio Oriental:</strong> Los más arométicos y exuberantes</li>
+                        <li><strong>Lirio Trompeta:</strong> Forma elegante y delicada</li>
+                        <li><strong>Lirio de los Valles:</strong> Pequeño pero muy fragante</li>
+                        <li><strong>Lirio Tigre:</strong> Naranja con puntos negros, espectacular</li>
+                    </ul>
+
+                    <h3 style="margin-top: 1.5rem;">Significado en Diferentes Culturas</h3>
+                    <ul>
+                        <li>🇮🇹 <strong>Italia:</strong> Símbolo de la Virgen María</li>
+                        <li>🇯🇵 <strong>Japón:</strong> Representa la elegancia y la gracia</li>
+                        <li>🇫🇷 <strong>Francia:</strong> Flor real, símbolo de monarquía</li>
+                        <li>🌍 <strong>Occidente:</strong> Pureza, renacimiento y esperanza</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="cuidados-section">
+            <h2>💚 Tips Para Cuidar Tus Flores Como Experta</h2>
+            <div class="cuidados-grid">
+                <div class="cuidado-card">
+                    <div class="cuidado-icon">💧</div>
+                    <h3>Riego Perfecto</h3>
+                    <p><strong>Frecuencia:</strong> Mantén el suelo húmedo pero no encharcado. Riega 2-3 veces por semana en primavera/verano, 1-2 veces en invierno. <strong>Consejo:</strong> Riega por la mañana temprano para evitar hongos.</p>
+                </div>
+
+                <div class="cuidado-card">
+                    <div class="cuidado-icon">☀️</div>
+                    <h3>Luz Solar</h3>
+                    <p><strong>Requisito:</strong> Mínimo 6-8 horas de luz directa diaria. <strong>Ideal:</strong> Luz matutina suave y protección del sol intenso de la tarde. Las flores necesitan luz para florecer hermosas.</p>
+                </div>
+
+                <div class="cuidado-card">
+                    <div class="cuidado-icon">🌡️</div>
+                    <h3>Temperatura Ideal</h3>
+                    <p><strong>Rango:</strong> Entre 15-25°C es lo mejor. <strong>Evita:</strong> Cambios bruscos de temperatura. Mantén lejos de corrientes de aire frío y fuentes de calor directo.</p>
+                </div>
+
+                <div class="cuidado-card">
+                    <div class="cuidado-icon">🪴</div>
+                    <h3>Suelo Perfecto</h3>
+                    <p><strong>Tipo:</strong> Suelo fértil y bien drenado. <strong>pH:</strong> Ligeramente ácido (6-6.5 para lirios). <strong>Mezcla:</strong> Tierra + compost + perlita en partes iguales.</p>
+                </div>
+
+                <div class="cuidado-card">
+                    <div class="cuidado-icon">🌿</div>
+                    <h3>Abono y Nutrientes</h3>
+                    <p><strong>Frecuencia:</strong> Abona cada 2-3 semanas durante la floración. <strong>Tipo:</strong> Fertilizante balanceado NPK o específico para flores. <strong>Consejo:</strong> Suspende en invierno.</p>
+                </div>
+
+                <div class="cuidado-card">
+                    <div class="cuidado-icon">✂️</div>
+                    <h3>Poda y Mantenimiento</h3>
+                    <p><strong>Flores marchitas:</strong> Retíralas para estimular más floraciones. <strong>Hojas amarillas:</strong> Elimina con cuidado. <strong>Limpieza:</strong> Limpia polvo de las hojas suavemente con algodón húmedo.</p>
+                </div>
+
+                <div class="cuidado-card">
+                    <div class="cuidado-icon">🦗</div>
+                    <h3>Plagas y Enfermedades</h3>
+                    <p><strong>Plagas comunes:</strong> Pulgones, ácaros. <strong>Tratamiento:</strong> Spray de agua con jabón orgánico. <strong>Prevención:</strong> Inspecciona regularmente y aísla plantas enfermas.</p>
+                </div>
+
+                <div class="cuidado-card">
+                    <div class="cuidado-icon">🌸</div>
+                    <h3>Para Flores Cortadas</h3>
+                    <p><strong>Duración:</strong> Cambia el agua cada 2 días. <strong>Corte diagonal:</strong> Recorta 2 cm en ángulo con cuchillo limpio. <strong>Ubicación:</strong> Lejos de frutas y fuentes de calor. ¡Dura 7-10 días!</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>🌸 El Jardín Secreto de Lau 🌸</p>
+            <p>Un espacio de amor, belleza y naturaleza</p>
+            <p>creado por Santi para Lau</p>
+        </footer>
+    </main>
+
+    <script>
+function createBees() {
+    const container = document.getElementById('beesContainer');
+    for(let i = 0; i < 15; i++) {
+        const bee = document.createElement('div');
+        bee.className = 'bee';
+        bee.textContent = '🐝';
+        bee.style.left = Math.random() * 100 + 'vw';
+        bee.style.top = Math.random() * 80 + 'vh';
+        bee.style.animationDuration = (4 + Math.random() * 4) + 's';
+        bee.style.animationDelay = i * 0.5 + 's';
+        container.appendChild(bee);
+    }
+}
+
+function toggleJardinMusic() {
+    const audio = document.getElementById('jardinMusic');
+    const btn = document.getElementById('jardinMusicBtn');
+    if(audio.paused) {
+        audio.play();
+        btn.textContent = '🔇';
+    } else {
+        audio.pause();
+        btn.textContent = '🎵';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    createBees();
+});
+function toggleMenu() {
+    const nav = document.querySelector('.main-nav');
+    const hamburger = document.querySelector('.hamburger');
+    
+    nav.classList.toggle('active');
+    
+    // Cambiar el ícono
+    if(nav.classList.contains('active')) {
+        hamburger.innerHTML = '✕';
+    } else {
+        hamburger.innerHTML = '☰';
+    }
+}
+
+// Cerrar menú al hacer clic en un enlace (móvil)
+document.querySelectorAll('.main-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+        const nav = document.querySelector('.main-nav');
+        const hamburger = document.querySelector('.hamburger');
+        if(window.innerWidth <= 768) {
+            nav.classList.remove('active');
+            hamburger.innerHTML = '☰';
+        }
+    });
+});
+
+// Cerrar menú al hacer clic fuera
+document.addEventListener('click', (e) => {
+    const nav = document.querySelector('.main-nav');
+    const hamburger = document.querySelector('.hamburger');
+    
+    if(nav && hamburger && !nav.contains(e.target) && !hamburger.contains(e.target) && nav.classList.contains('active')) {
+        nav.classList.remove('active');
+        hamburger.innerHTML = '☰';
+    }
+});
+    </script>
+</body>
+</html>

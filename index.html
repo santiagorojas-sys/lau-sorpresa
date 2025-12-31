@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños Laura Lizeth 💕</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Música de fondo -->
+    <audio id="bgMusic" loop>
+        <source src="audio/acuerdate-de-mi.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Control de música -->
+    <div class="music-control">
+        <button onclick="toggleMusic()" id="musicBtn">🎵</button>
+    </div>
+
+    <!-- Pétalos cayendo -->
+    <div class="petals-container" id="petalsContainer"></div>
+
+    <!-- Pantalla de bienvenida -->
+    <section class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-content">
+            <h1 class="elegant-title">Para Laura Lizeth</h1>
+            <p class="subtitle">La mujer que merece el mundo entero</p>
+            <p class="date">2 de Enero - 26 años de pura magia</p>
+            <button class="start-btn" onclick="startExperience()">Descubre tu sorpresa 🎁</button>
+        </div>
+    </section>
+
+    <!-- Menú de navegación (oculto al inicio) -->
+   <nav class="main-nav" id="mainNav">
+    <ul>
+        <li><a href="#home">Inicio</a></li>
+        <li><a href="spider-hunters.html">🕷️ Cazadores</a></li>
+        <li><a href="adqa.html">💕 ADQA</a></li>
+        <li><a href="jardin.html">🌸 Tu Jardín</a></li>
+        <li><a href="suenos.html">🗺️ Tus Sueños</a></li>
+        <li><a href="razones.html">💝 Razones</a></li>
+<li><a href="bonus.html" class="bonus-link">🎮 BONUS</a></li>
+
+    </ul>
+</nav>
+<!-- HAMBURGUESA (AGREGAR DESPUÉS <nav>) -->
+<button class="hamburger" onclick="toggleMenu()">☰</button>
+
+    <!-- Contenido principal (oculto al inicio) -->
+    <main id="mainContent">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2 class="hero-title">Feliz Cumpleaños, Lau 🎂</h2>
+                <p class="hero-text">Hoy celebramos 26 años de tu existencia haciendo el mundo más bonito</p>
+                <div class="hero-quote">
+                    <p>"Una mujer que ama leer, soñar y dar amor a todos los que la rodean"</p>
+                    <span>- Tu Santiago favorito 💙</span>
+                </div>
+            </div>
+
+
+      <!-- Galería de momentos -->
+<section class="moments-gallery">
+    <h2>Momentos que brillan</h2>
+    <div class="gallery-grid" id="photoGallery">
+        <div class="photo-card">
+            <img src="img/lau1.jpg" alt="Laura momento 1">
+            <p class="photo-caption">Esa sonrisa que ilumina todo</p>
+        </div>
+        <div class="photo-card">
+            <img src="img/lau2.jpg" alt="Laura momento 2">
+            <p class="photo-caption">ella toda tierna </p>
+        </div>
+        <div class="photo-card">
+            <img src="img/lau3.jpg" alt="Laura momento 3">
+            <p class="photo-caption">La lectora más hermosa</p>
+        </div>
+        <div class="photo-card">
+            <img src="img/lau4.jpg" alt="Laura momento 4">
+            <p class="photo-caption">La de la sonrisa más linda</p>
+        </div>
+        <div class="photo-card">
+            <img src="img/lau5.jpg" alt="Laura momento 5">
+            <p class="photo-caption">26 años de perfección</p>
+        </div>
+        <div class="photo-card">
+            <img src="img/lau6.jpg" alt="Laura momento 6">
+            <p class="photo-caption">Elegancia y belleza</p>
+        </div>
+        <div class="photo-card">
+            <img src="img/lau7.jpg" alt="Laura momento 7">
+            <p class="photo-caption">Simplemente especial</p>
+        </div>
+        <!-- lau8ar la guardamos para la página de cazadores -->
+        <div class="photo-card">
+            <img src="img/lau8ar.jpg" alt="Laura momento 8">
+            <p class="photo-caption">ni las arañas se escapan de ti</p>
+        </div>
+        <div class="photo-card">
+            <img src="img/lau9.jpg" alt="Laura momento 9">
+            <p class="photo-caption">Un momento único</p>
+        </div>
+        <div class="photo-card">
+            <img src="img/lau10.jpg" alt="Laura momento 10">
+            <p class="photo-caption">Te queremos pronto por aquiii</p>
+        </div>
+        <div class="photo-card">
+            <img src="img/lau11.jpg" alt="Laura momento 11">
+            <p class="photo-caption">Vintage y perfecta</p>
+        </div>
+        <div class="photo-card">
+            <img src="img/lau12.jpg" alt="Laura momento 12">
+            <p class="photo-caption">mis balas perdidas</p>
+        </div>
+    </div>
+</section>
+</section>
+       <!-- Sección de libros -->
+        <section class="books-section">
+            <h2>📚 "Amo leer, ojalá morirme leyendo jajaja"</h2>
+            <div class="book-interactive">
+                <div class="book-cover-closed" id="bookCoverClosed" onclick="openBookModal()">
+                    <div class="book-spine"></div>
+                    <div class="book-front">
+                        <h3>El Libro de Laura</h3>
+                        <p class="book-subtitle">Una historia mágica</p>
+                        <p class="click-hint">✨ Click para abrir ✨</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal del libro -->
+        <div class="book-modal" id="bookModal">
+            <button class="close-book" onclick="closeBookModal()">✕</button>
+            <div class="book-container">
+                <button class="nav-btn prev-btn" onclick="prevPage()">‹</button>
+                
+                <div class="book-pages">
+                    <div class="page left-page" id="leftPage">
+                        <div class="page-content"></div>
+                        <div class="page-number"></div>
+                    </div>
+                    <div class="page right-page" id="rightPage">
+                        <div class="page-content"></div>
+                        <div class="page-number"></div>
+                    </div>
+                </div>
+                
+                <button class="nav-btn next-btn" onclick="nextPage()">›</button>
+            </div>
+        </div>
+        <!-- Easter Eggs -->
+        <div class="floating-elements">
+            <div class="floating-flower" onclick="showMessage('Eres especial 🌸')">🌸</div>
+            <div class="floating-heart" onclick="showMessage('26 años de magia ✨')">💕</div>
+            <div class="floating-book" onclick="showMessage('Futura profe de inglés 📚')">📖</div>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

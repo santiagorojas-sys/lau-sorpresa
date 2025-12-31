@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🗺️ Los Sueños de Lau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+:root {
+  --rosa-pastel: #FFD6E8;
+  --vino-tinto: #722F37;
+  --azul-oscuro: #134252;
+  --crema: #F5F1EB;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(-45deg, #FFE4E1, #FFF1F5, #F8F4F8, #FFE8ED);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    overflow-x: hidden;
+}
+
+@keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+.music-control {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.music-control button {
+    background: var(--rosa-pastel);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.music-control button:hover { transform: scale(1.1); }
+/* MENÚ IGUAL QUE RAZONES + HAMBURGUESA MÓVIL */
+.main-nav {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    left: auto;
+    z-index: 1000;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    background: rgba(255,255,255,0.95);
+    padding: 1rem 1.5rem;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--vino-tinto);
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.main-nav a:hover { 
+    background: var(--rosa-pastel); 
+    transform: translateY(-2px); 
+}
+
+.hamburger {
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    z-index: 1001;
+    background: var(--rosa-pastel);
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.hamburger:hover {
+    background: var(--vino-tinto);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* HAMBURGUESA MÓVIL */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+    
+    .main-nav {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(255,214,232,0.95));
+        transition: right 0.3s ease;
+        z-index: 1000;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+    }
+    
+    .main-nav.active {
+        right: 0;
+    }
+    
+    .main-nav ul {
+        flex-direction: column;
+        padding: 80px 20px 20px;
+        background: transparent;
+        height: 100%;
+        box-shadow: none;
+        border-radius: 0;
+        gap: 1rem;
+    }
+    
+    .main-nav li {
+        width: 100%;
+    }
+    
+    .main-nav a {
+        display: block;
+        padding: 15px 20px;
+        width: 100%;
+        text-align: center;
+        font-size: 1.1rem;
+        background: rgba(255,255,255,0.9);
+        margin-bottom: 10px;
+        border-radius: 15px;
+    }
+}
+
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    background: rgba(255,255,255,0.95);
+    padding: 1rem 1.5rem;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--vino-tinto);
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.main-nav a:hover { background: var(--rosa-pastel); transform: translateY(-2px); }
+
+main { position: relative; z-index: 10; }
+
+.hero-suenos {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--rosa-pastel), #FFE4E1, #FFF1F5);
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.hero-suenos::after {
+    content: '🗺️';
+    position: absolute;
+    font-size: 15rem;
+    opacity: 0.08;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.hero-content-suenos {
+    max-width: 800px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title-suenos {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    color: var(--vino-tinto);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.hero-subtitle-suenos {
+    font-size: 1.4rem;
+    color: var(--azul-oscuro);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.dreams-section {
+    padding: 5rem 2rem;
+    background: white;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    color: var(--vino-tinto);
+    margin-bottom: 0.5rem;
+}
+
+.section-title p {
+    font-size: 1.1rem;
+    color: var(--azul-oscuro);
+}
+
+.dreams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.dream-card {
+    background: linear-gradient(135deg, white, #F8F5F2);
+    padding: 2.5rem;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    border-left: 5px solid var(--rosa-pastel);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.dream-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,182,193,0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.dream-card:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 25px 60px rgba(255,182,193,0.4);
+    border-left-color: var(--vino-tinto);
+}
+
+.dream-card:hover::before { opacity: 1; }
+
+.dream-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.dream-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--vino-tinto);
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.dream-card p {
+    font-size: 1.05rem;
+    color: var(--azul-oscuro);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.dream-progress {
+    background: rgba(255,182,193,0.2);
+    height: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.dream-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--rosa-pastel), var(--vino-tinto));
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.dream-card:hover .dream-progress-bar {
+    animation: fillProgress 0.6s ease forwards;
+}
+
+@keyframes fillProgress { to { width: 100%; } }
+
+.santi-message {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, rgba(255,182,193,0.1), rgba(255,214,235,0.15));
+    text-align: center;
+}
+
+.santi-box {
+    max-width: 700px;
+    margin: 0 auto;
+    background: white;
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    border: 3px solid var(--rosa-pastel);
+}
+
+.santi-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.santi-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--vino-tinto);
+    margin-bottom: 1rem;
+}
+
+.santi-box p {
+    font-size: 1.25rem;
+    color: var(--azul-oscuro);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.santi-signature {
+    font-size: 1.3rem;
+    color: var(--vino-tinto);
+    font-weight: 600;
+    margin-top: 1.5rem;
+}
+
+.motivation-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, #FFF8E1, #F1F8E9);
+}
+
+.motivation-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    color: var(--vino-tinto);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.motivation-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.motivation-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    border-top: 4px solid var(--rosa-pastel);
+    transition: all 0.4s ease;
+}
+
+.motivation-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 60px rgba(255,182,193,0.3);
+}
+
+.motivation-card p {
+    color: var(--azul-oscuro);
+    line-height: 1.8;
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+}
+
+.motivation-author {
+    font-size: 0.95rem;
+    color: var(--vino-tinto);
+    font-style: italic;
+    text-align: right;
+}
+
+.interactive-section {
+    padding: 5rem 2rem;
+    background: white;
+}
+
+.interactive-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    color: var(--vino-tinto);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.interactive-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.affirmation-button {
+    display: block;
+    width: 100%;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--rosa-pastel), #FFB6C1);
+    border: none;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    color: var(--vino-tinto);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(255,182,193,0.3);
+}
+
+.affirmation-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(255,182,193,0.5);
+}
+
+.affirmation-result {
+    background: rgba(255,182,193,0.15);
+    padding: 2rem;
+    border-radius: 20px;
+    border-left: 5px solid var(--vino-tinto);
+    margin-top: 1.5rem;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.affirmation-result p {
+    font-size: 1.25rem;
+    color: var(--azul-oscuro);
+    line-height: 1.8;
+}
+
+.checkbox-group {
+    background: rgba(255,182,193,0.1);
+    padding: 2rem;
+    border-radius: 20px;
+    margin-top: 2rem;
+}
+
+.checkbox-group h3 {
+    color: var(--vino-tinto);
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.checkbox-item:hover {
+    background: rgba(255,182,193,0.1);
+    transform: translateX(5px);
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.checkbox-item label {
+    cursor: pointer;
+    color: var(--azul-oscuro);
+    font-size: 1.05rem;
+}
+
+.checkbox-item input[type="checkbox"]:checked + label {
+    color: var(--vino-tinto);
+    font-weight: 600;
+    text-decoration: line-through;
+}
+
+footer {
+    padding: 3rem 2rem;
+    background: var(--vino-tinto);
+    color: white;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+footer p { margin: 0.5rem 0; }
+
+@media (max-width: 768px) {
+    .hero-title-suenos { font-size: 3rem; }
+    .section-title h2 { font-size: 2.5rem; }
+    .main-nav ul { flex-wrap: wrap; gap: 0.5rem; }
+}
+.bonus-link {
+    background: linear-gradient(135deg, var(--rosa-pastel), #FFB6C1) !important;
+    color: var(--vino-tinto) !important;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+    </style>
+</head>
+<body class="page-no-nav">>
+    <audio id="suenosMusic" loop>
+        <source src="audio/suenos-inspirador.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="music-control">
+        <button onclick="toggleSuenosMusic()" id="suensoMusicBtn">🎵</button>
+    </div>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">🏠 Inicio</a></li>
+            <li><a href="spider-hunters.html">🕷️ Cazadores</a></li>
+            <li><a href="jardin.html">🌸 Jardín</a></li>
+            <li><a href="suenos.html">🗺️ Sueños</a></li>
+            <li><a href="razones.html">💝 Razones</a></li>
+<li><a href="bonus.html" class="bonus-link">🎮 BONUS</a></li>
+
+        </ul>
+    </nav>
+<button class="hamburger" onclick="toggleMenu()">☰</button>
+    <main>
+        <section class="hero-suenos">
+            <div class="hero-content-suenos">
+                <h1 class="hero-title-suenos">🗺️ Mis Sueños 🗺️</h1>
+                <p class="hero-subtitle-suenos">Un mapa de metas, esperanzas y realidades por cumplir</p>
+            </div>
+        </section>
+
+        <section class="dreams-section">
+            <div class="section-title">
+                <h2>💭 Tus Sueños en Proceso</h2>
+                <p>Cada uno de estos sueños es posible. Solo necesita consistencia y dedicación</p>
+            </div>
+            <div class="dreams-grid" id="dreamsGrid"></div>
+        </section>
+
+        <section class="santi-message">
+            <div class="santi-box">
+                <div class="santi-icon">🕷️💙</div>
+                <h2>Un Mensaje Especial Para Ti</h2>
+                <p>"Lau, te veo luchar cada día. Te veo estudiar cuando estás cansada, te veo soñar grande cuando algunos dicen que es imposible. Quiero que sepas que AQUÍ ESTOY PARA TODO LO QUE NECESITES para cumplir tus sueños."</p>
+                <p>"No importa si los profesores no revisan, si es difícil, si alguien no cree en ti. YO CREO EN TI. Tu capacidad es infinita, tu fuerza es real, tus sueños son POSIBLES."</p>
+                <p>"Vas a viajar a esos lugares silenciosos, vas a tener esa casa con jardín, vamos a escuchar todos los conciertos, vas a ser la mejor profesora de ingles, y vamos a montar un negocio increíble en Medellín y nos vamos a llenar de money entonces ya vente con nosotros jsjs. TODO ESTO Y MUCHO MAS."</p>
+                <p style="font-size: 1.4rem; margin-top: 1.5rem;"> Te quiero mucho, soñadora</p>
+                <p class="santi-signature">— Santiago 🕷️</p>
+            </div>
+        </section>
+
+        <section class="motivation-section">
+            <h2>💪 Cuando Quieras Rendirte... Lee Esto</h2>
+            <div class="motivation-cards">
+                <div class="motivation-card">
+                    <p>"El éxito no es un accidente. Es trabajo, dedicación y la negativa a rendirse cuando otros sí lo hacen. Tú no eres como otros."</p>
+                    <p class="motivation-author">— Para ti</p>
+                </div>
+                <div class="motivation-card">
+                    <p>"Ese profesor que no revisa tu trabajo, esa tarea difícil, ese momento de duda... son solo pruebas. Y LAS ESTÁS PASANDO porque sigues adelante."</p>
+                    <p class="motivation-author">— Tu reflejo</p>
+                </div>
+                <div class="motivation-card">
+                    <p>"Los sueños no vienen a los que esperan. Vienen a los que luchan, aprenden, caen y se levantan. Eres de ese tipo."</p>
+                    <p class="motivation-author">— Realidad</p>
+                </div>
+                <div class="motivation-card">
+                    <p>"Tu cansancio de hoy es la fuerza de mañana. Tu lucha de ahora es tu historia de éxito. Sigue, Lau. Falta poco."</p>
+                    <p class="motivation-author">— Tu futuro</p>
+                </div>
+                <div class="motivation-card">
+                    <p>"No necesitas permiso de nadie para tener sueños grandes. No necesitas aprobación para ser extraordinaria. SIMPLEMENTE ERES."</p>
+                    <p class="motivation-author">— Verdad eterna</p>
+                </div>
+                <div class="motivation-card">
+                    <p>"En 5 años, al miraras atrás, lo único que lamentarás será no haber empezado antes. Así que empieza YA. Ahora. Hoy."</p>
+                    <p class="motivation-author">— Tu versión futura</p>
+                </div>
+            </div>
+        </section>
+        <section style="padding: 5rem 2rem; background: linear-gradient(135deg, rgba(255,182,193,0.1), rgba(255,214,235,0.15));">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 3.2rem; color: var(--vino-tinto); text-align: center; margin-bottom: 3rem;">🌟 Agrega Un Nuevo Sueño</h2>
+                
+                <div style="background: white; padding: 2.5rem; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.1);">
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; color: var(--vino-tinto); font-weight: 600;">✨ ¿Cuál es tu nuevo sueño?</label>
+                        <input type="text" id="newDreamTitle" placeholder="Ej: Aprender fotografía, Viajar a Japón..." style="width: 100%; padding: 1rem; border: 2px solid var(--rosa-pastel); border-radius: 15px; font-size: 1rem; font-family: 'Poppins', sans-serif; transition: all 0.3s ease;" onfocus="this.style.borderColor='var(--vino-tinto)';" onblur="this.style.borderColor='var(--rosa-pastel)';">
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; color: var(--vino-tinto); font-weight: 600;">📝 Describe tu sueño</label>
+                        <textarea id="newDreamDescription" placeholder="Cuéntame más sobre este sueño... ¿por qué es importante para ti?" style="width: 100%; padding: 1rem; border: 2px solid var(--rosa-pastel); border-radius: 15px; font-size: 1rem; font-family: 'Poppins', sans-serif; min-height: 100px; resize: vertical; transition: all 0.3s ease;" onfocus="this.style.borderColor='var(--vino-tinto)';" onblur="this.style.borderColor='var(--rosa-pastel)';"></textarea>
+                    </div>
+
+                    <button onclick="addNewDream()" style="width: 100%; padding: 1.2rem; background: linear-gradient(135deg, var(--rosa-pastel), #FFB6C1); border: none; border-radius: 20px; font-size: 1.2rem; color: var(--vino-tinto); font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 25px rgba(255,182,193,0.3);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 15px 40px rgba(255,182,193,0.5)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 10px 25px rgba(255,182,193,0.3)';">
+                        ✨ Activar Mi Nuevo Sueño ✨
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="interactive-section">
+            <h2>✨ Tu Dosis Diaria de Motivación</h2>
+            <div class="interactive-container">
+                <h3 style="text-align: center; color: var(--vino-tinto); margin-bottom: 2rem;">Presiona para recibir tu afirmación del día</h3>
+                <button class="affirmation-button" onclick="getAffirmation()">💫 Recibir Afirmación 💫</button>
+                
+                <div class="affirmation-result" id="affirmationResult" style="display: none;">
+                    <p id="affirmationText"></p>
+                </div>
+
+                <div class="checkbox-group">
+                    <h3>📋 Tu Checklist de Hoy</h3>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="check1">
+                        <label for="check1">Estudié o avancé en mis tareas</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="check2">
+                        <label for="check2">Practicé inglés hoy</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="check3">
+                        <label for="check3">Busqué información sobre mis sueños</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="check4">
+                        <label for="check4">Cuidé una flor o mi bienestar</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="check5">
+                        <label for="check5">Me recordé que SOY FUERTE</label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>🗺️ Los Sueños de Lau 🗺️</p>
+            <p>Todos son posibles. Todos son reales. Todos se cumplirán.</p>
+            <p>Con amor, Santiago 💙</p>
+        </footer>
+    </main>
+
+    <script>
+        function addNewDream() {
+    const title = document.getElementById('newDreamTitle').value.trim();
+    const description = document.getElementById('newDreamDescription').value.trim();
+
+    if(!title || !description) {
+        alert('Por favor completa ambos campos 💕');
+        return;
+    }
+
+    // Agregar el nuevo sueño a la lista
+    const newDream = {
+        title: title,
+        description: description,
+        progress: 5
+    };
+
+    dreams.push(newDream);
+
+    // Limpiar los inputs
+    document.getElementById('newDreamTitle').value = '';
+    document.getElementById('newDreamDescription').value = '';
+
+    // Recargar la grid de sueños
+    const grid = document.getElementById('dreamsGrid');
+    grid.innerHTML = '';
+    loadDreams();
+
+    // MOSTRAR NOTIFICACIÓN ÉPICA
+    showNotification(title);
+
+    // Scroll a los sueños
+    document.querySelector('.dreams-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+function showNotification(dreamTitle) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 3rem;
+        border-radius: 30px;
+        box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        z-index: 5000;
+        text-align: center;
+        max-width: 600px;
+        width: 90%;
+        animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    `;
+
+    notification.innerHTML = `
+        <div style="font-size: 4rem; margin-bottom: 1rem;">🌟</div>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--vino-tinto); margin-bottom: 1rem;">¡NUEVO SUEÑO ACTIVADO!</h2>
+        <p style="font-size: 1.3rem; color: var(--azul-oscuro); margin-bottom: 1.5rem; line-height: 1.8;">
+            "<strong>${dreamTitle}</strong>" está en progreso
+        </p>
+        <div style="background: linear-gradient(135deg, rgba(255,182,193,0.2), rgba(255,214,235,0.2)); padding: 1.5rem; border-radius: 20px; margin-bottom: 2rem;">
+            <p style="font-size: 1.2rem; color: var(--azul-oscuro); margin: 0; font-weight: 600;">
+                📱 Santiago ha sido notificado<br>
+                "Hay que apoyar a nuestra Lau en este nuevo sueño" 💙
+            </p>
+        </div>
+        <p style="font-size: 1.1rem; color: var(--vino-tinto); font-weight: 600; margin: 0;">
+            ¡Juntos lo vamos a cumplir! 🚀✨
+        </p>
+    `;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.style.animation = 'fadeOut 0.4s ease forwards';
+        setTimeout(() => notification.remove(), 400);
+    }, 3500);
+}
+
+// Agregar animación fadeOut
+const style2 = document.createElement('style');
+style2.textContent = `
+    @keyframes popUp {
+        from {
+            transform: translate(-50%, -50%) scale(0.5);
+            opacity: 0;
+        }
+        to {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        to {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.9);
+        }
+    }
+`;
+document.head.appendChild(style2);
+
+        
+const dreams = [
+    {
+        title: "✈️ Viajar a Lugares Silenciosos",
+        description: "Encontrar paz en esos rincones del mundo donde el silencio es sagrado. Lugares donde solo se escucha la naturaleza.",
+        progress: 35
+    },
+    {
+        title: "🏠 Vivir en un País Oriental",
+        description: "Tener mi propia casita con un jardín grande. Un espacio donde cultivar paz y belleza todos los días.",
+        progress: 20
+    },
+    {
+        title: "🎵 Conciertos del Mundo",
+        description: "Recorrer el mundo siguiendo la música. Escuchar en vivo a tus artistas favoritos en diferentes escenarios.",
+        progress: 45
+    },
+    {
+        title: "🇺🇸 Dominar el Inglés",
+        description: "Hablar fluidamente, entender cada acento, viajar sin barreras. El inglés es tu puerta al mundo.",
+        progress: 60
+    },
+    {
+        title: "🐾 Peluquería de Mascotas en Medellín",
+        description: "Montar un negocio hermoso donde los peluqueros cuiden con amor a cada mascota. Éxito en Medellín.",
+        progress: 25
+    },
+    {
+        title: "📚 Terminar la Carrera Fuerte",
+        description: "A pesar de los profesores difíciles, los trabajos no revisados, las tareas pesadas. TERMINAR Y SER EXCELENTE.",
+        progress: 70
+    }
+];
+
+const affirmations = [
+    "Eres más fuerte que cualquier obstáculo. HOY LO DEMUESTRAS.",
+    "Tus sueños merecen tu dedicación. Y la tienes.",
+    "No rendirse es ganar. Cada día que continúas, GANAS.",
+    "Tu valor no depende de una calificación o de si alguien revisa tu trabajo. ERES VALIOSA.",
+    "Hoy es el día en que empiezas a convertir tus sueños en planes reales.",
+    "Los profesores difíciles solo hacen que seas MÁS FUERTE. Gracias a ellos.",
+    "Mañana te lo agradecerás por no rendirte hoy.",
+    "Eres la versión más increíble de ti misma. Y aún tienes mucho por demostrar.",
+    "El silencio que buscas, la paz que quieres... todo está en tu futuro. Sigue.",
+    "Eres un sueño hecho realidad. Ahora, haz que tus sueños se realicen también."
+];
+
+function loadDreams() {
+    const grid = document.getElementById('dreamsGrid');
+    dreams.forEach((dream, index) => {
+        const card = document.createElement('div');
+        card.className = 'dream-card';
+        card.innerHTML = `
+            <div class="dream-icon">${dream.title.split(' ')[0]}</div>
+            <h3>${dream.title}</h3>
+            <p>${dream.description}</p>
+            <div class="dream-progress">
+                <div class="dream-progress-bar" style="width: ${dream.progress}%"></div>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--azul-oscuro);">${dream.progress}% Progreso</p>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+function getAffirmation() {
+    const random = Math.floor(Math.random() * affirmations.length);
+    const result = document.getElementById('affirmationResult');
+    const text = document.getElementById('affirmationText');
+    text.textContent = affirmations[random];
+    result.style.display = 'flex';
+    result.style.animation = 'none';
+    setTimeout(() => {
+        result.style.animation = 'fadeIn 0.5s ease';
+    }, 10);
+}
+
+function toggleSuenosMusic() {
+    const audio = document.getElementById('suenosMusic');
+    const btn = document.getElementById('suensoMusicBtn');
+    if(audio.paused) {
+        audio.play();
+        btn.textContent = '🔇';
+    } else {
+        audio.pause();
+        btn.textContent = '🎵';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadDreams();
+});
+
+const style = document.createElement('style');
+style.textContent = `
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+`;
+document.head.appendChild(style);
+function toggleMenu() {
+    const nav = document.querySelector('.main-nav');
+    const hamburger = document.querySelector('.hamburger');
+    
+    nav.classList.toggle('active');
+    
+    if(nav.classList.contains('active')) {
+        hamburger.innerHTML = '✕';
+    } else {
+        hamburger.innerHTML = '☰';
+    }
+}
+
+// Cerrar menú al click fuera
+document.addEventListener('click', function(event) {
+    const nav = document.querySelector('.main-nav');
+    const hamburger = document.querySelector('.hamburger');
+    
+    if (!nav.contains(event.target) && !hamburger.contains(event.target)) {
+        nav.classList.remove('active');
+        hamburger.innerHTML = '☰';
+    }
+});
+
+    </script>
+</body>
+</html>
