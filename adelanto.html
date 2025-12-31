@@ -459,8 +459,8 @@ body {
     </div>
 
     <script>
-// Prueba: desbloqueo en 2 minutos desde ahora
-const LAUNCH_DATE = new Date(Date.now() + 2 * 60 * 1000);
+// Prueba: desbloqueo en exactamente 2 minutos desde este commit
+const LAUNCH_DATE = new Date(Date.now() + 120000);  // 120000 ms = 2 minutos
 
 function updateCountdown() {
     const now = new Date();
@@ -618,3 +618,4 @@ setTimeout(() => {
 
 
 </body>
+
