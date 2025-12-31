@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 Sorpresa para Laura Lizeth</title>
+    <style>
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(-45deg, #FFD6E8, #FFE4E1, #FFF1F5); 
+            height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: #722F37; 
+            text-align: center;
+            margin: 0;
+        }
+        h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        p { font-size: 1.3rem; }
+    </style>
+    <script>
+        // Fecha exacta del cumpleaños (misma que en adelanto.html)
+        const LAUNCH_DATE = new Date('2026-01-02T00:00:00-05:00'); // Ajustá si es otra fecha
+        
+        const now = new Date();
+        
+        if (now >= LAUNCH_DATE) {
+            // Si ya llegó el 2 de enero → va directo a la sorpresa completa
+            window.location.href = 'index.html';
+        } else {
+            // Si no → va al adelanto con countdown
+            window.location.href = 'adelanto.html';
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <h1>🎉 ¡Cargando tu sorpresa mágica, Lau! ✨</h1>
+        <p>Un momento mientras la magia se activa... 💖</p>
+    </div>
+</body>
+</html>
