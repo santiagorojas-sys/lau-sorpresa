@@ -459,7 +459,8 @@ body {
     </div>
 
     <script>
-const LAUNCH_DATE = new Date('2026-01-02T00:00:00-05:00');
+// Prueba: desbloqueo en 2 minutos desde ahora
+const LAUNCH_DATE = new Date(Date.now() + 2 * 60 * 1000);
 
 function updateCountdown() {
     const now = new Date();
@@ -614,5 +615,6 @@ setTimeout(() => {
             <p>nono señorita te me esperas hasta el 2, te quiero jaja 😏</p>
         </div>
     </div>
+
 
 </body>
